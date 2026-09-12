@@ -1,0 +1,10 @@
+/* FAQ inspiration 1 */
+.faq1-hero{background:#001f3d}.faq1-splash{clip-path:polygon(0 18%,100% 0,82% 100%,0 100%);filter:saturate(1.05)}
+.faq1-paper{background:
+  radial-gradient(circle at 88% 10%,rgba(0,51,96,.045) 0 2px,transparent 2.5px) 0 0/22px 22px,
+  linear-gradient(#fff,#fff)}
+.faq1-item{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}.faq1-item:hover{transform:translateY(-2px);border-color:rgba(0,51,96,.16);box-shadow:0 16px 45px rgba(0,31,61,.08)}
+.faq1-answer{animation:faq1Reveal .2s ease}.faq1-contact{isolation:isolate}
+@keyframes faq1Reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1023px){.faq1-hero .relative{min-height:320px}.faq1-splash{width:120px;opacity:.9}}
+@media(max-width:640px){.faq1-hero .relative{min-height:285px}.faq1-hero h1{font-size:3rem}.faq1-paper{padding-top:4rem;padding-bottom:4rem}}
