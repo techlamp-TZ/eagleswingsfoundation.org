@@ -1,0 +1,18 @@
+/* Homepage inspiration v5 — split monochrome hero, connected service flow, torn edge */
+.v5-paper{background:linear-gradient(180deg,#fff 0%,#fbfdfc 100%)}
+.v5-hero-cut{clip-path:polygon(0 0,89% 0,100% 12%,92% 25%,100% 40%,91% 56%,100% 72%,91% 87%,100% 100%,0 100%)}
+.v5-hero-cut img{filter:grayscale(1) contrast(1.08)}
+.v5-handmark{background-image:radial-gradient(circle at 20% 50%,rgba(246,147,30,.34),transparent 16%),radial-gradient(circle at 50% 30%,rgba(0,51,96,.16),transparent 18%),radial-gradient(circle at 80% 70%,rgba(246,147,30,.2),transparent 16%)}
+.v5-service-wrap{position:relative}
+.v5-service-wrap:after{content:"";position:absolute;left:8%;right:8%;bottom:-16px;height:34px;background:#001f3d;clip-path:polygon(0 42%,5% 30%,8% 56%,12% 22%,16% 64%,20% 36%,24% 60%,28% 28%,32% 58%,36% 35%,40% 66%,44% 30%,48% 56%,52% 22%,56% 62%,60% 34%,64% 58%,68% 24%,72% 62%,76% 36%,80% 58%,84% 28%,88% 64%,92% 34%,96% 58%,100% 40%,100% 100%,0 100%)}
+.v5-flow-line{position:absolute;left:12%;right:12%;top:57%;height:80px;pointer-events:none}
+.v5-flow-line:before{content:"";position:absolute;left:0;right:0;top:0;height:1px;border-top:1px dashed rgba(255,255,255,.32)}
+.v5-photo-stack:before{content:"";position:absolute;inset:-18px 15% auto auto;width:160px;height:160px;border-radius:40% 60% 55% 45%;background:rgba(246,147,30,.14);z-index:-1}
+.v5-photo-stack:after{content:"";position:absolute;right:-22px;bottom:-24px;width:190px;height:190px;border-radius:58% 42% 35% 65%;background:rgba(0,51,96,.08);z-index:-1}
+.v5-story-grid{display:grid;grid-template-columns:1.25fr 1fr .9fr;gap:18px}
+.v5-story-side{display:grid;gap:14px}
+.v5-story-side article{display:grid;grid-template-columns:88px 1fr;gap:12px}
+.v5-card-border{border:1px solid rgba(0,51,96,.10)}
+.v5-quote-panel{background:linear-gradient(90deg,rgba(0,31,61,.96),rgba(0,31,61,.70)),url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1600&q=80') center/cover}
+@media(max-width:1023px){.v5-hero-cut{clip-path:none}.v5-flow-line{display:none}.v5-service-wrap:after{display:none}.v5-story-grid{grid-template-columns:1fr}.v5-story-side{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.v5-story-side{grid-template-columns:1fr}.v5-story-side article{grid-template-columns:76px 1fr}}
