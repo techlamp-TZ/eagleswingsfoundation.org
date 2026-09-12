@@ -1,0 +1,16 @@
+/* Our Volunteers v1 */
+.vol1-hero{background:#001f3d}
+.vol1-splash{clip-path:polygon(0 32%,28% 20%,18% 42%,45% 33%,32% 55%,66% 48%,49% 70%,80% 66%,100% 92%,0 100%);opacity:.98;filter:saturate(1.02)}
+.vol1-paper{background:
+ radial-gradient(circle at 8% 12%,rgba(246,147,30,.08),transparent 16rem),
+ radial-gradient(circle at 94% 72%,rgba(0,51,96,.07),transparent 18rem),#fff}
+.vol1-card{transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+.vol1-card:hover{transform:translateY(-6px);border-color:rgba(0,51,96,.2);box-shadow:0 24px 60px rgba(0,31,61,.12)}
+.vol1-photo{filter:saturate(.88) contrast(1.02)}
+.vol1-card:nth-child(4n+1) .vol1-photo{background:#fff1bd}
+.vol1-card:nth-child(4n+2) .vol1-photo{background:#dff5e8}
+.vol1-card:nth-child(4n+3) .vol1-photo{background:#eef1f4}
+.vol1-card:nth-child(4n+4) .vol1-photo{background:#efe8ff}
+.vol1-standards{background-image:linear-gradient(rgba(255,255,255,.65),rgba(255,255,255,.65)),radial-gradient(circle at 20% 10%,rgba(246,147,30,.08),transparent 22rem),radial-gradient(circle at 80% 90%,rgba(0,51,96,.06),transparent 20rem)}
+.vol1-cta:after{content:"";position:absolute;right:-4rem;bottom:-6rem;width:18rem;height:18rem;border:1px solid rgba(246,147,30,.28);border-radius:50%;box-shadow:0 0 0 34px rgba(246,147,30,.05),0 0 0 70px rgba(246,147,30,.025)}
+@media (max-width:640px){.vol1-splash{width:9rem;height:8rem}.vol1-card .vol1-photo{height:18rem}}
