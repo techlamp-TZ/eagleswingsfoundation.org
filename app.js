@@ -37,11 +37,9 @@ const pill = (text, iconName='sparkles') => `<span class="inline-flex items-cent
 const sectionHead = (eyebrow,title,text='',align='left') => `<div class="${align==='center'?'mx-auto max-w-3xl text-center':'max-w-3xl'}"><div class="eyebrow text-brand-orange">${eyebrow}</div><h2 class="mt-3 font-display text-4xl leading-[1.05] text-brand-deep sm:text-5xl">${title}</h2>${text?`<p class="mt-5 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">${text}</p>`:''}</div>`;
 
 function brand(){
-  return `<a href="#/home" class="group flex items-center gap-3" aria-label="Eagle's Wings Foundation Tanzania home">
-    <span class="relative grid h-12 w-14 place-items-center overflow-hidden rounded-2xl bg-brand-deep shadow-sm transition group-hover:-translate-y-0.5">
-      <svg viewBox="0 0 64 42" class="h-8 w-10" aria-hidden="true"><path d="M30 21C20 9 10 4 2 5c5 4 8 8 10 13-4-2-7-2-10-1 7 4 13 9 18 16l10-12Z" fill="#F6931E"/><path d="M34 21C44 9 54 4 62 5c-5 4-8 8-10 13 4-2 7-2 10-1-7 4-13 9-18 16L34 21Z" fill="#F6931E"/><path d="M26 18h12l-6 14-6-14Z" fill="#fff"/></svg>
-    </span>
-    <span><span class="block font-display text-[1.35rem] leading-none text-brand-deep">Eagle’s Wings</span><span class="mt-1 block text-[9px] font-extrabold uppercase tracking-[.22em] text-brand-orange">Foundation Tanzania</span></span>
+  const logo = './assets/eagles-wings-foundation-logo.png?v=full-colour-2';
+  return `<a href="#/home" class="group inline-flex shrink-0 items-center rounded-2xl bg-white px-3 py-1.5 transition hover:-translate-y-0.5" aria-label="Eagle's Wings Foundation Tanzania home">
+    <img src="${logo}" alt="Eagle's Wings Foundation Tanzania" class="h-[72px] w-auto max-w-[118px] object-contain sm:h-[78px] sm:max-w-[128px]" width="128" height="102" decoding="sync" fetchpriority="high">
   </a>`;
 }
 
