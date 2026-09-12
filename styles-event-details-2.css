@@ -1,0 +1,12 @@
+/* Event details v2 */
+.event2-hero{background:#001f3d}
+.event2-splash{clip-path:polygon(0 0,100% 20%,76% 100%,0 100%);filter:saturate(.9)}
+.event2-paper{background:linear-gradient(180deg,#fff 0%,#fff 78%,#f8fbfd 100%)}
+.event2-feature{position:relative}
+.event2-feature:after{content:"";position:absolute;inset:auto 0 0 0;height:22%;background:linear-gradient(180deg,transparent,rgba(0,31,61,.08));pointer-events:none}
+.event2-sidebar>div,.event2-sidebar>a{transition:transform .25s ease,box-shadow .25s ease}
+.event2-sidebar>div:hover,.event2-sidebar>a:hover{transform:translateY(-2px)}
+.event2-related{position:relative;overflow:hidden}
+.event2-related:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-110px;top:-130px;border:34px solid rgba(246,147,30,.06)}
+@media(max-width:1023px){.event2-sidebar{position:static}.event2-feature img{height:430px}}
+@media(max-width:640px){.event2-hero .font-display{font-size:3rem}.event2-feature img{height:320px}.event2-splash{width:100px;height:150px}.event2-paper{padding-top:3.5rem}}
