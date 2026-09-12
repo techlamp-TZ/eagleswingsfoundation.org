@@ -5,8 +5,8 @@
 window.EWOfficialLogo='./assets/eagles-wings-foundation-logo.png';
 
 brand=function(){
-  return `<a href="#/home" class="group inline-flex shrink-0 items-center rounded-2xl bg-white px-2.5 py-1.5 shadow-sm ring-1 ring-slate-100/80 transition hover:-translate-y-0.5 hover:shadow-card" aria-label="Eagle's Wings Foundation Tanzania home">
-    <img src="${window.EWOfficialLogo}" alt="Eagle's Wings Foundation Tanzania" class="h-14 w-auto object-contain sm:h-16" width="101" height="81" decoding="async">
+  return `<a href="#/home" class="group inline-flex shrink-0 items-center rounded-2xl bg-white px-3 py-1.5 transition hover:-translate-y-0.5" aria-label="Eagle's Wings Foundation Tanzania home">
+    <img src="${window.EWOfficialLogo}" alt="Eagle's Wings Foundation Tanzania" class="h-[72px] w-auto max-w-[118px] object-contain sm:h-[78px] sm:max-w-[128px]" width="128" height="102" decoding="sync" fetchpriority="high">
   </a>`;
 };
 
