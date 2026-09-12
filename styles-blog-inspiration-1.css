@@ -1,0 +1,4 @@
+/* Blog grid inspiration 1 */
+.blog1-hero{background:#001f3d}.blog1-splash{clip-path:polygon(0 8%,100% 0,72% 20%,100% 38%,70% 58%,100% 78%,65% 100%,0 92%)}.blog1-paper{position:relative;background:linear-gradient(180deg,#fff 0%,#fff 78%,#fbfcfd 100%)}.blog1-card{min-width:0}.blog1-image{height:270px}.blog1-card h2{transition:color .2s ease}.blog1-card:hover h2{color:#003360}.blog1-standards{background:linear-gradient(180deg,#fbfcfd 0%,#f4f8fb 100%)}.blog1-cta{box-shadow:0 28px 80px rgba(0,31,61,.14)}
+@media (min-width:1024px){.blog1-image{height:285px}}
+@media (max-width:767px){.blog1-hero .font-display{font-size:3.25rem;line-height:1}.blog1-image{height:240px}.blog1-splash{width:7rem;height:13rem}}
