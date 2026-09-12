@@ -1,0 +1,11 @@
+/* Program detail v2 — deep-content + support form refinements */
+.program2-feature{position:relative}
+.program2-feature:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 68%,rgba(0,31,61,.10))}
+.program2-sidebar{min-width:0}
+.program2-support{position:relative;overflow:hidden}
+.program2-support:before{content:"";position:absolute;left:-120px;top:40px;width:260px;height:260px;border-radius:50%;background:rgba(246,147,30,.08);filter:blur(6px)}
+.program2-support:after{content:"";position:absolute;right:-100px;bottom:-90px;width:300px;height:300px;border-radius:50%;background:rgba(0,51,96,.07)}
+.program2-support>div{position:relative;z-index:1}
+#program-support-form{scroll-margin-top:110px}
+@media(max-width:1023px){.program2-sidebar{position:static!important}.program2-feature img{height:420px}}
+@media(max-width:640px){.program2-feature img{height:300px}}
