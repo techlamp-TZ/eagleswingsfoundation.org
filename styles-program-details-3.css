@@ -1,0 +1,4 @@
+/* Program detail v3 */
+.program3-hero{min-height:390px;background:#001f3d}.program3-hero .program3-swash{clip-path:polygon(0 42%,72% 0,100% 15%,84% 46%,100% 73%,58% 100%,0 82%);opacity:.96}.program3-paper{background:radial-gradient(circle at 8% 12%,rgba(246,147,30,.08),transparent 18%),linear-gradient(#fff,#fff)}.program3-sidebar>div,.program3-sidebar>a{transition:transform .25s ease,box-shadow .25s ease}.program3-sidebar>div:hover,.program3-sidebar>a:hover{transform:translateY(-2px)}.program3-gift{background-image:radial-gradient(circle at 86% 14%,rgba(246,147,30,.14),transparent 24%)}
+@media (max-width:1023px){.program3-sidebar{position:static!important}.program3-hero{min-height:330px}}
+@media (max-width:640px){.program3-hero{min-height:300px}.program3-hero .program3-swash{height:5rem;width:12rem}.program3-paper{padding-top:3.5rem}.program3-gift{border-radius:1.35rem}.program3-sidebar .shadow-card{box-shadow:0 12px 30px rgba(0,31,61,.07)}}
