@@ -1,0 +1,14 @@
+/* Get involved / volunteer inspiration 1 */
+.vol1-hero{min-height:340px}
+.vol1-form-section{position:relative;overflow:hidden;background:linear-gradient(180deg,#fff 0%,#fff 76%,#f8fafc 100%)}
+.vol1-form-section:before{content:"";position:absolute;left:-90px;top:40px;width:320px;height:420px;background:linear-gradient(135deg,rgba(0,51,96,.06),rgba(246,147,30,.03));clip-path:polygon(0 0,100% 18%,70% 48%,100% 72%,42% 100%,0 78%);pointer-events:none}
+.vol1-photo{isolation:isolate}
+.vol1-photo:after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.10)}
+.vol1-form{position:relative;z-index:1}
+.vol1-label{display:block;font-size:.78rem;font-weight:800;color:#10263a}
+.vol1-input{margin-top:.5rem;width:100%;border:1px solid #dbe3ea;border-radius:1rem;padding:.9rem 1rem;font-size:.9rem;font-weight:500;color:#10263a;outline:none;transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
+.vol1-input:focus{border-color:#003360;box-shadow:0 0 0 4px rgba(0,51,96,.07)}
+.vol1-cta{min-height:420px}
+.vol1-brush{clip-path:polygon(13% 0,100% 0,91% 20%,100% 34%,89% 49%,100% 63%,91% 78%,100% 100%,5% 100%,16% 82%,3% 66%,14% 52%,0 36%,15% 20%,2% 8%)}
+@media(max-width:1023px){.vol1-photo{min-height:480px}.vol1-cta{min-height:380px}}
+@media(max-width:767px){.vol1-photo{min-height:420px}.vol1-cta{min-height:auto}.vol1-brush{width:60%;opacity:.35}}
