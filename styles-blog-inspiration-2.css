@@ -1,0 +1,23 @@
+/* Blog Standard inspiration 2 — editorial list + sticky sidebar */
+.blog2-hero{min-height:390px;background:#001f3d}
+.blog2-hero:after{content:"";position:absolute;left:-70px;bottom:-55px;width:210px;height:260px;background:#f6931e;clip-path:polygon(0 18%,65% 0,100% 100%,0 82%);opacity:.95;transform:rotate(-5deg)}
+.blog2-paper{background:linear-gradient(180deg,#fff 0%,#fff 72%,#f8fbfd 100%)}
+.blog2-layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:44px;align-items:start}
+.blog2-list-card{border-bottom:1px solid #e8eef3;padding-bottom:42px}
+.blog2-list-card+.blog2-list-card{padding-top:42px}
+.blog2-list-img{height:340px}
+.blog2-sidebar{position:sticky;top:100px;display:grid;gap:18px}
+.blog2-side-card{border:1px solid rgba(0,51,96,.06);background:#eef8f6;border-radius:24px;padding:24px;box-shadow:0 14px 36px rgba(0,31,61,.05)}
+.blog2-side-title{font-family:'DM Serif Display',Georgia,serif;font-size:1.55rem;line-height:1.1;color:#001f3d}
+.blog2-category-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid rgba(0,51,96,.09);font-size:.82rem;color:#526273}
+.blog2-category-row:last-child{border-bottom:0}
+.blog2-recent{display:grid;grid-template-columns:68px 1fr;gap:12px;align-items:center;padding:10px 0;border-bottom:1px dashed rgba(0,51,96,.12)}
+.blog2-recent:last-child{border-bottom:0}
+.blog2-recent img{width:68px;height:58px;object-fit:cover;border-radius:12px}
+.blog2-tag{display:inline-flex;margin:4px 4px 0 0;border-radius:999px;background:#fff;padding:8px 11px;font-size:.7rem;font-weight:800;color:#526273;border:1px solid rgba(0,51,96,.08);transition:.2s ease}
+.blog2-tag:hover{background:#003360;color:#fff}
+.blog2-support{overflow:hidden;background:#001f3d;color:#fff}
+.blog2-support img{height:155px;width:100%;object-fit:cover;opacity:.68}
+.blog2-trust{background:#f7fafc}
+@media(max-width:1023px){.blog2-layout{grid-template-columns:1fr}.blog2-sidebar{position:static;grid-template-columns:repeat(2,minmax(0,1fr))}.blog2-list-img{height:300px}}
+@media(max-width:639px){.blog2-list-img{height:230px}.blog2-sidebar{grid-template-columns:1fr}.blog2-side-card{padding:20px}.blog2-hero{min-height:330px}}
