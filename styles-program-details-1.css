@@ -1,0 +1,8 @@
+/* Program detail page styling inspired by the supplied Services Details reference */
+.program-detail-hero{background:#001f3d}
+.program-detail-sidebar{min-width:0}
+.program-detail-sidebar a{transition:transform .2s ease,border-color .2s ease,background-color .2s ease}
+.program-detail-sidebar a:hover{transform:translateY(-1px)}
+.program-detail-sidebar .img-zoom img{transition:transform .45s ease}
+.program-detail-sidebar .img-zoom:hover img{transform:scale(1.05)}
+@media(max-width:1023px){.program-detail-sidebar{position:static!important}.program-detail-sidebar>div:nth-child(3){display:none}}
