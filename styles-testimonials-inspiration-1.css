@@ -1,0 +1,17 @@
+/* Testimonials inspiration 1 */
+.test1-hero{background:#001f3d}
+.test1-hero img{filter:grayscale(1) contrast(1.04)}
+.test1-splash{clip-path:polygon(0 0,78% 10%,100% 34%,70% 48%,96% 68%,66% 82%,82% 100%,0 100%);opacity:.98}
+.test1-paper{background:
+  radial-gradient(circle at 8% 10%,rgba(246,147,30,.08),transparent 16%),
+  radial-gradient(circle at 94% 18%,rgba(0,51,96,.055),transparent 18%),
+  #fff}
+.test1-card{transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+.test1-card:hover{transform:translateY(-5px);box-shadow:0 24px 54px rgba(0,31,61,.09);border-color:rgba(0,51,96,.16)}
+.test1-quote{pointer-events:none;user-select:none}
+.test1-standards{background:
+  radial-gradient(circle at 12% 20%,rgba(246,147,30,.065),transparent 18%),
+  radial-gradient(circle at 90% 70%,rgba(0,51,96,.05),transparent 18%),
+  #f4f8fb}
+.test1-cta:after{content:'';position:absolute;right:-5%;top:-20%;width:34%;height:140%;background:rgba(246,147,30,.24);transform:rotate(10deg);border-radius:42%}
+@media(max-width:640px){.test1-hero .font-display{font-size:3.3rem}.test1-card p{min-height:0}.test1-cta:after{display:none}}
