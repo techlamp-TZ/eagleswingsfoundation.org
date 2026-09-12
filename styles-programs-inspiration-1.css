@@ -1,0 +1,13 @@
+/* Programs page inspiration 1 — adapted from supplied Services reference */
+.programs-breadcrumb:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.14))}
+.programs-paper{background-image:radial-gradient(circle at 12% 20%,rgba(0,51,96,.035),transparent 16%),radial-gradient(circle at 88% 75%,rgba(246,147,30,.05),transparent 18%)}
+.programs-symbol{position:absolute;color:rgba(0,51,96,.10);pointer-events:none}
+.programs-symbol-a{left:3%;top:11%}.programs-symbol-b{right:4%;bottom:7%}
+.programs-steps:before{content:"";position:absolute;left:9%;right:9%;top:42px;border-top:1px dashed rgba(0,51,96,.18);display:none}
+.programs-step-feature{transform:translateY(-12px) rotate(-1deg);box-shadow:0 28px 70px rgba(0,31,61,.18)}
+.programs-service-dark{background-image:radial-gradient(circle at 15% 20%,rgba(246,147,30,.08),transparent 30%),radial-gradient(circle at 85% 80%,rgba(16,185,129,.07),transparent 28%)}
+.program-service-card{transition:transform .3s ease,border-color .3s ease,background .3s ease}.program-service-card:hover{transform:translateY(-6px);border-color:rgba(246,147,30,.35);background:rgba(255,255,255,.08)}
+.programs-cta{min-height:390px}.programs-brush{clip-path:polygon(24% 0,100% 0,82% 18%,100% 34%,72% 49%,100% 66%,76% 82%,100% 100%,18% 100%,36% 83%,8% 66%,31% 48%,5% 30%,28% 14%)}
+@media(min-width:1280px){.programs-steps:before{display:block}}
+@media(max-width:1023px){.programs-step-feature{transform:none}.programs-brush{opacity:.45;width:45%}}
+@media(max-width:640px){.programs-symbol{display:none}.programs-cta{min-height:0}.programs-brush{display:none}}
