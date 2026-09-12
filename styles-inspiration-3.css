@@ -10,6 +10,8 @@
 .ref3-dark{background-image:radial-gradient(circle at 15% 10%,rgba(246,147,30,.08),transparent 28%),radial-gradient(circle at 85% 90%,rgba(16,185,129,.08),transparent 30%)}
 .ref3-dark-2{background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:34px 34px}
 .ref3-cta-splash{clip-path:polygon(35% 0,100% 0,70% 22%,100% 42%,58% 57%,93% 75%,38% 100%,0 100%,18% 78%,0 62%,28% 42%,0 24%)}
+/* The reference used numeric progress bars. Ours are decorative pathway dividers only. */
+.home-paper .h-2>div{width:100%!important;background:linear-gradient(90deg,#003360 0%,#0f766e 65%,#f6931e 100%)!important;opacity:.9}
 @media (min-width:1280px){.ref3-steps:before{display:block}}
 @media (max-width:1023px){.ref3-swoop,.ref3-corner-b{display:none}.ref3-corner-a{opacity:.7}.ref3-step-feature{transform:none}}
 @media (max-width:640px){.ref3-hero{min-height:0}.ref3-corner{width:110px;height:110px}.ref3-corner-a{left:-45px;bottom:-46px}.ref3-cta-splash{display:none}}
