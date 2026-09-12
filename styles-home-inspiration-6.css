@@ -1,0 +1,18 @@
+/* Homepage inspiration v6 — long-form charity editorial treatment */
+.v6-hero{min-height:690px}
+.v6-yellow-stroke,.v6-white-stroke{clip-path:polygon(0 18%,12% 0,28% 13%,43% 0,59% 18%,74% 4%,100% 24%,88% 48%,100% 68%,82% 84%,65% 73%,48% 100%,31% 79%,12% 94%,0 78%,8% 57%)}
+.v6-factbar{border-top:1px solid rgba(255,255,255,.08)}
+.v6-paper{background:radial-gradient(circle at 7% 20%,rgba(246,147,30,.08),transparent 21%),radial-gradient(circle at 92% 86%,rgba(0,51,96,.05),transparent 24%),#fff}
+.v6-action-card,.v6-service-card,.v6-project,.v6-person,.v6-event,.v6-news{transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+.v6-action-card:hover,.v6-service-card:hover,.v6-project:hover,.v6-person:hover,.v6-event:hover,.v6-news:hover{transform:translateY(-5px);box-shadow:0 26px 62px rgba(0,31,61,.12)}
+.v6-collage:after{content:"";position:absolute;right:-24px;bottom:-30px;width:130px;height:130px;border:2px dashed rgba(246,147,30,.34);border-radius:50%}
+.v6-marquee-track{display:inline-block;min-width:max-content;animation:v6Marquee 26s linear infinite}
+.v6-community{isolation:isolate}
+.v6-donation-photo{position:relative}
+.v6-story-band{min-height:440px}
+.v6-map-grid{background-image:linear-gradient(rgba(0,51,96,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,51,96,.05) 1px,transparent 1px),radial-gradient(circle at 58% 46%,rgba(246,147,30,.16),transparent 22%);background-size:34px 34px,34px 34px,100% 100%}
+.v6-map-grid:before{content:"TANZANIA";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-12deg);font-family:'DM Serif Display',serif;font-size:clamp(4rem,10vw,8rem);letter-spacing:.08em;color:rgba(0,51,96,.055)}
+@keyframes v6Marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(max-width:1023px){.v6-hero{min-height:620px}.v6-collage:after{display:none}.v6-yellow-stroke{opacity:.6}.v6-white-stroke{opacity:.55}}
+@media(max-width:767px){.v6-hero{min-height:580px}.v6-yellow-stroke{width:190px;height:110px}.v6-white-stroke{width:190px}.v6-marquee-track{animation-duration:18s}}
+@media(prefers-reduced-motion:reduce){.v6-marquee-track{animation:none}}
