@@ -1,7 +1,0 @@
-/* Events inspiration 1 — upcoming events catalogue, action banner and editorial follow-up */
-.events1-hero{min-height:340px}
-.events1-card{transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
-.events1-card:hover{transform:translateY(-4px);border-color:rgba(0,51,96,.14);box-shadow:0 24px 60px rgba(0,31,61,.10)}
-.events1-cta{min-height:390px}
-.events1-brush{clip-path:polygon(18% 0,100% 0,91% 18%,100% 32%,88% 46%,100% 62%,90% 76%,100% 100%,8% 100%,18% 83%,4% 68%,16% 52%,2% 38%,15% 20%,0 7%)}
-@media(max-width:767px){.events1-card{display:block}.events1-cta{min-height:auto}.events1-brush{opacity:.38;width:60%}}

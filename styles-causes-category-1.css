@@ -1,9 +1,0 @@
-/* Support Areas / Causes Category refinements */
-.causecat-hero{background:#001f3d}
-.causecat-search{transition:transform .25s ease,box-shadow .25s ease}
-.causecat-search:focus-within{transform:translateY(-2px);box-shadow:0 18px 50px rgba(0,31,61,.10)}
-.causecat-card{transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
-.causecat-card:hover{transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,31,61,.11);border-color:rgba(0,51,96,.13)}
-.causecat-card.hidden{display:none}
-.causecat-doodle{pointer-events:none;transform:rotate(8deg)}
-@media(max-width:767px){.causecat-hero .min-h-\[340px\]{min-height:260px}.causecat-doodle{display:none}}

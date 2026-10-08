@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  # Per-route copies of the page shell with that page's own title and description
+  # (built by scripts/prerender-meta.mjs). Served when one exists for the URL.
+  RewriteCond %{DOCUMENT_ROOT}/_meta%{REQUEST_URI}.html -f
+  RewriteRule ^(.+?)/?$ /_meta/$1.html [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# The page shell must always be revalidated so new deployments show at once;
+# built assets have content hashes in their names, so they can be cached for good.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "^(rss|sitemap)\.xml$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  <If "%{REQUEST_URI} =~ m#^/assets/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+</IfModule>
