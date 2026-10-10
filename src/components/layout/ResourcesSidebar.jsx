@@ -4,13 +4,10 @@ import Icon from '../ui/Icon.jsx'
 import { resourceNav } from '../../data/nav.js'
 
 const resourceIcons = {
-  'mission-vision-values': 'target',
+  blog: 'file-text',
   gallery: 'image',
   catalogue: 'shopping-bag',
-  reports: 'file-text',
-  partners: 'handshake',
-  careers: 'briefcase',
-  testimonials: 'message-square-quote',
+  careers: 'users-round',
   faq: 'circle-help',
   privacy: 'shield-check',
 }
@@ -19,15 +16,17 @@ function activeRouteId(pathname) {
   return pathname.replace(/^\//, '').split('/')[0] || 'home'
 }
 
-// Desktop-only left sidebar for the Resources pages. A slim tab sits on the
-// left edge; clicking it slides the panel in over the page. Closes on outside
-// press, Escape and route change. Below xl the Resources list lives in the
-// mobile menu instead.
+// Desktop-only Resources menu on the left edge. A small navy circle sits on the edge;
+// pointing at it or pressing it fans the Resources links out beside it as
+// pills. Closes when the pointer leaves, on an outside press, on Escape and
+// on route change. Below 1440px the Resources list lives in the header menu
+// and the mobile menu instead.
 export default function ResourcesSidebar() {
   const [open, setOpen] = useState(false)
   const ref = useRef(null)
   const tabRef = useRef(null)
-  const closeRef = useRef(null)
+  const firstRef = useRef(null)
+  const viaKeyboard = useRef(false)
   const { pathname } = useLocation()
   const active = activeRouteId(pathname)
 
@@ -35,11 +34,12 @@ export default function ResourcesSidebar() {
     setOpen(false)
   }, [pathname])
 
-  // Move focus into the panel when it opens so keyboard users land on it.
-  // (A tick later: the panel is visibility:hidden until its transition starts.)
+  // Opened from the keyboard: move focus to the first link.
+  // (A tick later: the list is visibility:hidden until its transition starts.)
   useEffect(() => {
-    if (!open) return undefined
-    const id = setTimeout(() => closeRef.current?.focus(), 30)
+    if (!open || !viaKeyboard.current) return undefined
+    viaKeyboard.current = false
+    const id = setTimeout(() => firstRef.current?.focus(), 30)
     return () => clearTimeout(id)
   }, [open])
 
@@ -63,63 +63,59 @@ export default function ResourcesSidebar() {
   }, [open])
 
   return (
-    <div ref={ref} className="no-print hidden min-[1440px]:block">
+    <div
+      ref={ref}
+      className="no-print fixed left-0 top-1/2 z-40 hidden -translate-y-1/2 items-center min-[1440px]:flex"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
       <button
         ref={tabRef}
         type="button"
-        onClick={() => setOpen((o) => !o)}
+        onClick={(e) => {
+          // detail === 0 means the press came from the keyboard
+          viaKeyboard.current = e.detail === 0
+          setOpen((o) => (e.detail === 0 ? !o : true))
+        }}
         aria-expanded={open}
         aria-controls="resourcesSidebar"
-        title="Open resources menu"
-        className="fixed left-0 top-1/2 z-40 flex w-8 -translate-y-1/2 flex-col items-center gap-3 rounded-r bg-brand-navy py-4 text-white transition-colors hover:bg-brand-deep"
+        aria-label="Resources menu"
+        title="Resources"
+        className="ml-2 grid h-11 w-11 place-items-center rounded-full bg-brand-navy text-brand-orange shadow-[0_6px_18px_rgba(6,31,63,0.18)] transition-colors hover:bg-brand-deep"
       >
-        <Icon name="panel-left-open" className="h-4 w-4 text-brand-orange" />
-        <span className="mono-label [writing-mode:vertical-rl]">Resources</span>
-        <Icon name="chevron-right" className="h-3.5 w-3.5 text-brand-orange" />
+        <Icon name={open ? 'x' : 'panel-left-open'} className="h-5 w-5" />
       </button>
 
-      <aside
-        id="resourcesSidebar"
-        aria-label="Resources"
-        className={`fixed inset-y-0 left-0 z-[60] flex w-72 flex-col border-r border-line bg-white transition-[transform,visibility] duration-200 ${
-          open ? 'visible translate-x-0' : 'invisible -translate-x-full'
-        }`}
-      >
-        <div className="flex items-center justify-between border-b border-line px-5 py-4">
-          <div>
-            <div className="eyebrow text-brand-orange">Explore</div>
-            <h2 className="display-sm mt-1 text-brand-deep">Resources</h2>
-          </div>
-          <button
-            ref={closeRef}
-            type="button"
-            onClick={() => {
-              setOpen(false)
-              tabRef.current?.focus()
-            }}
-            aria-label="Close resources"
-            className="grid h-10 w-10 place-items-center rounded border border-line text-brand-navy hover:bg-sand"
-          >
-            <Icon name="x" className="h-4 w-4" />
-          </button>
-        </div>
-        <nav className="flex-1 overflow-y-auto overscroll-contain" aria-label="Resources">
-          {resourceNav.map(([label, id]) => (
-            <Link
-              key={id}
-              to={`/${id}`}
-              className={`flex items-center gap-3 border-b border-line border-l-2 px-5 py-3.5 text-sm transition-colors ${
-                active === id
-                  ? 'border-l-brand-orange bg-sand font-semibold text-brand-navy'
-                  : 'border-l-transparent text-brand-ink hover:bg-sand hover:text-brand-navy'
-              }`}
-            >
-              <Icon name={resourceIcons[id] || 'circle'} className="h-4 w-4 shrink-0 text-brand-orange" />
-              {label}
-            </Link>
-          ))}
-        </nav>
-      </aside>
+      <nav id="resourcesSidebar" aria-label="Resources" className={`pl-2 ${open ? 'visible' : 'invisible'}`}>
+        <ul className="flex flex-col items-start gap-2">
+          {resourceNav.map(([label, id], i) => {
+            const on = active === id
+            return (
+              <li
+                key={id}
+                style={{ transitionDelay: open ? `${i * 35}ms` : '0ms' }}
+                className={`transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none ${
+                  open ? 'translate-x-0 opacity-100' : '-translate-x-3 opacity-0'
+                }`}
+              >
+                <Link
+                  ref={i === 0 ? firstRef : undefined}
+                  to={`/${id}`}
+                  aria-current={on ? 'page' : undefined}
+                  className={`flex min-h-12 items-center gap-3 rounded-full border py-2 pl-5 pr-7 text-[0.9375rem] shadow-[0_6px_18px_rgba(6,31,63,0.14)] transition-colors ${
+                    on
+                      ? 'border-brand-orange bg-[#fdebd3] font-semibold text-brand-deep'
+                      : 'border-line bg-white text-brand-deep hover:border-brand-navy hover:text-brand-navy'
+                  }`}
+                >
+                  <Icon name={resourceIcons[id] || 'circle'} className="h-5 w-5 shrink-0 text-brand-orange-ink" />
+                  {label}
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      </nav>
     </div>
   )
 }

@@ -106,4 +106,4 @@ Provide private changing spaces, and respect modesty and comfort. Helpers should
 
 ## What this means at Eagle's Wings
 
-Eagle's Wings Foundation Tanzania includes hydrotherapy, swimming and exercise among its public activities, always with the principle that supervision and professional guidance come first. To understand how movement and learning connect, explore our [education and therapy guidance program](/programs/program-education-therapy), or see our approach to [events](/events).
+Eagle's Wings Foundation Tanzania includes hydrotherapy, swimming and exercise among its public activities, always with the principle that supervision and professional guidance come first. To understand how movement and learning connect, explore our [education and therapy guidance program](/programs/program-education-therapy).

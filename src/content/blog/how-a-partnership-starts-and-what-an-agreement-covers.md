@@ -102,4 +102,4 @@ For a wider look at the kinds of contribution you might discuss, see [ways organ
 
 ## What this means at Eagle's Wings
 
-This guide is general and describes how many partnerships begin. It does not set out any specific process or terms of ours. If you would like to explore working together, please read our [Partners page](/partners) and then [contact us](/contact). We will start by listening.
+This guide is general and describes how many partnerships begin. It does not set out any specific process or terms of ours. If you would like to explore working together, please [contact us](/contact). We will start by listening.

@@ -48,7 +48,7 @@ There is no single right way. Here is a simple overview.
 |---|---|---|
 | Volunteer | Giving time and care, following our guidance | [Volunteers](/volunteers) |
 | Donate | Supporting the work financially | [Donate](/donate) |
-| Partner | Working together as an organisation | [Partners](/partners) |
+| Partner | Working together as an organisation | [Contact](/contact) |
 | Learn and share | Reading, and sharing respectful information | [Blog](/blog) |
 | Ask a question | Getting in touch | [Contact](/contact) |
 
@@ -84,7 +84,7 @@ Please do not send private medical information about someone else in a first mes
 
 ## What if I want to join as an organisation or partner?
 
-Organisations are welcome to get in touch through the [Partners](/partners) page. We believe partnerships should share values: dignity, inclusion, transparency and safety. Our article on [responsible partnerships with the Foundation](/blog/article-responsible-partnerships-with-the-foundation) covers this in more detail.
+Organisations are welcome to get in touch through the [Contact](/contact) page. We believe partnerships should share values: dignity, inclusion, transparency and safety. Our article on [responsible partnerships with the Foundation](/blog/article-responsible-partnerships-with-the-foundation) covers this in more detail.
 
 ## Can I help without giving money or time?
 
@@ -99,7 +99,7 @@ The WHO estimates that [about 1.3 billion people](https://www.who.int/news-room/
 
 ## What if I have a question about careers or events?
 
-The [Careers](/careers) and [Events](/events) pages are the best places to look for current information. We only announce something there when it is confirmed. For everything else, our [FAQ](/faq) page may already answer your question.
+The [Careers](/careers) page is the best place to look for current information. We only announce something there when it is confirmed. For everything else, our [FAQ](/faq) page may already answer your question.
 
 ## What should I keep in mind before I reach out?
 
@@ -110,4 +110,4 @@ The [Careers](/careers) and [Events](/events) pages are the best places to look 
 
 ## What this means at Eagle's Wings
 
-We welcome people who share our respect for dignity and inclusion. If you are ready to start, visit the [Get Involved](/get-involved) page, or read our [mission, vision and values](/mission-vision-values) to see whether our purpose feels like a good fit.
+We welcome people who share our respect for dignity and inclusion. If you are ready to start, visit the [Get Involved](/get-involved) page, or read our [mission, vision and values](/about#mission) to see whether our purpose feels like a good fit.

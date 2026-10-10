@@ -123,4 +123,4 @@ After the event, gather the helpers for a short review. Ask what worked, what fe
 
 ## What this means at Eagle's Wings
 
-Eagle's Wings Foundation Tanzania works with people with disabilities and challenges, especially children and older people, and their families and caregivers. Clear, respectful and safe gatherings are part of how community inclusion becomes real. You can read more about how we share activities on our [events page](/events), or learn how to help responsibly on our [volunteers page](/volunteers).
+Eagle's Wings Foundation Tanzania works with people with disabilities and challenges, especially children and older people, and their families and caregivers. Clear, respectful and safe gatherings are part of how community inclusion becomes real. You can learn how to help responsibly on our [volunteers page](/volunteers).

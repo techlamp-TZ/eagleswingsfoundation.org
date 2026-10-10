@@ -102,4 +102,4 @@ Our companion articles on a [partner due-diligence checklist](/blog/article-part
 
 ## What this means at Eagle's Wings
 
-Eagle's Wings Foundation works in Tegeta, Dar es Salaam, across neuro-diversity awareness, elderly care support, education and therapy guidance, life skills and caregiver training. If you are thinking about which type of partnership might suit your organisation, read our [Partners page](/partners) and then [get in touch](/contact) to talk it through.
+Eagle's Wings Foundation works in Tegeta, Dar es Salaam, across neuro-diversity awareness, elderly care support, education and therapy guidance, life skills and caregiver training. If you are thinking about which type of partnership might suit your organisation, please [get in touch](/contact) to talk it through.

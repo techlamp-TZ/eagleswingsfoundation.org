@@ -56,17 +56,16 @@ async function ids(file, exportName) {
 }
 
 const staticPaths = [
-  '/', '/about', '/programs', '/impact', '/get-involved', '/events', '/blog', '/contact', '/donate',
-  '/gallery', '/catalogue', '/faq', '/volunteers', '/mission-vision-values', '/testimonials', '/reports', '/partners',
+  '/', '/about', '/programs', '/impact', '/get-involved', '/blog', '/contact', '/donate',
+  '/gallery', '/catalogue', '/faq', '/volunteers', 
   '/careers', '/privacy', '/resources', '/causes', '/get-started',
 ]
 const programs = (await ids('programDetails.js', 'programDetails')).map((i) => `/programs/${i}`)
-const events = (await ids('eventDetails.js', 'eventDetails')).map((i) => `/events/${i}`)
 const volunteers = (await ids('volunteerRoles.js', 'volunteerRoles')).map((i) => `/volunteers/${i}`)
 
 const today = new Date().toISOString().slice(0, 10)
 const urls = [
-  ...[...staticPaths, ...programs, ...events, ...volunteers].map((p) => ({ loc: `${SITE}${p}`, lastmod: today })),
+  ...[...staticPaths, ...programs, ...volunteers].map((p) => ({ loc: `${SITE}${p}`, lastmod: today })),
   ...posts.map((p) => ({ loc: articleUrl(p), lastmod: asDate(p.updated || p.date) })),
 ]
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

@@ -100,4 +100,4 @@ Nobody should feel trapped by an agreement, and nobody should feel pressured int
 
 ## What this means at Eagle's Wings
 
-We are a young non-profit in Tegeta, Dar es Salaam, and we would rather grow carefully than quickly. If your organisation shares this approach, we would be glad to talk. Visit our [Partners page](/partners) to see how collaboration works in general terms, or [contact us](/contact) to begin a conversation. Nothing is promised in advance. We start by listening.
+We are a young non-profit in Tegeta, Dar es Salaam, and we would rather grow carefully than quickly. If your organisation shares this approach, we would be glad to talk. Please [contact us](/contact) to begin a conversation. Nothing is promised in advance. We start by listening.

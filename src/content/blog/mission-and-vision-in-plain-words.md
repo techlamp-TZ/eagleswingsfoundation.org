@@ -99,4 +99,4 @@ It is also why we talk about values and approach. We do not claim results we can
 
 ## What this means at Eagle's Wings
 
-Our mission is what we try to do each day, and our vision is what we hope our community can become. You can read both in full on the [mission, vision and values](/mission-vision-values) page, and see who we are on the [About page](/about).
+Our mission is what we try to do each day, and our vision is what we hope our community can become. You can read both in full on the [mission, vision and values](/about#mission) page, and see who we are on the [About page](/about).

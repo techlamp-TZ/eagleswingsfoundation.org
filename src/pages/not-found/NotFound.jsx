@@ -5,7 +5,7 @@ import { usePageTitle } from '../../utils/usePageTitle.js'
 
 const shortcuts = [
   ['/get-involved', 'Get involved', 'Volunteer or partner'],
-  ['/events', 'Events', 'See planned gatherings'],
+  ['/blog', 'News & stories', 'Read practical guidance'],
   ['/donate', 'Support', 'Ways to donate'],
 ]
 

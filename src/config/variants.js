@@ -13,5 +13,4 @@ export const variantConfig = {
   // DETAIL pages (below) are still multi-variant.
   causes: { default: 4, order: [1, 2, 3, 4] },
   'program-detail': { default: 3, order: [1, 2, 3] },
-  'event-detail': { default: 2, order: [1, 2] },
 }

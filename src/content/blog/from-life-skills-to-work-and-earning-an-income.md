@@ -99,4 +99,4 @@ Work should never be forced. Some people will not want to work, or may not be ab
 
 ## What this means at Eagle's Wings
 
-Eagle's Wings Foundation Tanzania sees life skills as one step in a longer journey toward independence, and we hold income and vocational training as part of our vision. Today our program work focuses on structured life-skills support, especially for young people with autism who are 12 and above. Read more on our [life skills program page](/programs/program-life-skills) or explore our [mission, vision and values](/mission-vision-values).
+Eagle's Wings Foundation Tanzania sees life skills as one step in a longer journey toward independence, and we hold income and vocational training as part of our vision. Today our program work focuses on structured life-skills support, especially for young people with autism who are 12 and above. Read more on our [life skills program page](/programs/program-life-skills) or explore our [mission, vision and values](/about#mission).

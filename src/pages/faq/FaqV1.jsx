@@ -1,11 +1,14 @@
 import { useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import Icon from '../../components/ui/Icon.jsx'
-import PageHero from '../../components/ui/PageHero.jsx'
 import Button from '../../components/ui/Button.jsx'
-import SectionHead from '../../components/ui/SectionHead.jsx'
-import { Link } from 'react-router-dom'
 import { photos } from '../../data/photos.js'
+import { SITE } from '../../config/site.js'
 import { useUrlState } from '../../utils/useUrlState.js'
+
+// FAQ: topics on the left, an accordion on the right. The topic and the
+// search term live in the URL (?topic=, ?q=). A search looks through every
+// topic, not only the one that is open.
 
 const groups = {
   general: [
@@ -135,7 +138,7 @@ const groups = {
     ],
     [
       'How will financial transparency be handled?',
-      'We publish reports in the Annual Reports section as they are approved. Financial reports, fundraising targets and audited figures appear only after they are formally approved.',
+      'We will publish reports on this website as they are approved. Financial reports, fundraising targets and audited figures appear only after they are formally approved.',
     ],
     [
       'Why does the site not show fundraising totals or donor names?',
@@ -164,7 +167,7 @@ const groups = {
   events: [
     [
       'Are there confirmed public events yet?',
-      'Not yet. Our Events page shows the kinds of events we plan to run. We announce the date, time and venue of each one once they are confirmed.',
+      'Not yet. We will announce the date, time and venue of each event on this website once they are confirmed.',
     ],
     [
       'What kinds of events are planned?',
@@ -172,7 +175,7 @@ const groups = {
     ],
     [
       'How do I register for an event?',
-      'When an event is confirmed, the event page can publish the approved registration process. Until then, visitors can use the contact or interest pathways to ask about future participation.',
+      'When an event is confirmed, we will publish the registration process on this website. Until then, visitors can use the contact or interest pathways to ask about future participation.',
     ],
   ],
   privacy: [
@@ -191,151 +194,272 @@ const groups = {
   ],
 }
 
-const labels = { general: 'General', autism: 'Autism & Down syndrome', skills: 'Skills, inclusion & support', programs: 'Programs', donation: 'Donations', volunteer: 'Volunteering', events: 'Events', privacy: 'Privacy & Safeguarding' }
+const topics = [
+  ['general', 'General', 'file-text'],
+  ['autism', 'Autism & Down syndrome', 'users-round'],
+  ['skills', 'Skills, inclusion & support', 'book-open'],
+  ['programs', 'Programs', 'settings'],
+  ['donation', 'Donations', 'gift'],
+  ['volunteer', 'Volunteering', 'hand-heart'],
+  ['events', 'Events', 'calendar-days'],
+  ['privacy', 'Privacy & safeguarding', 'shield-check'],
+]
+const topicLabel = Object.fromEntries(topics.map(([id, label]) => [id, label]))
 
-const trustPoints = [
-  ['badge-check', 'Verified'],
-  ['shield-check', 'Safeguarding aware'],
-  ['file-check-2', 'Documented'],
-  ['scale', 'Clear boundaries'],
-  ['refresh-cw', 'Updated when needed'],
+// Each chip opens a real question from the lists above.
+const popular = [
+  ['users-round', 'Can I request support?', 'programs', 'Can I request support for a family member?'],
+  ['heart', 'How can I volunteer?', 'volunteer', 'How can I become a volunteer?'],
+  ['gift', 'Can I direct my donation?', 'donation', 'Can I direct support to a specific program?'],
+  ['stethoscope', 'Do you give medical advice?', 'general', 'Does the website provide medical diagnosis or treatment?'],
 ]
 
+const standards = [
+  ['badge-check', 'Verified', 'Checked against a trusted source before it is published.'],
+  ['shield-check', 'Safeguarding aware', 'Nothing that could put a child or vulnerable person at risk.'],
+  ['file-check-2', 'Documented', 'Based on our programs, policies and published material.'],
+  ['scale', 'Clear boundaries', 'General information, not medical diagnosis or treatment.'],
+  ['refresh-cw', 'Updated when needed', 'Corrected when something changes or a reader points out an error.'],
+]
+
+const wrap = 'mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'
+const eyebrow = 'text-xs font-bold uppercase tracking-[0.14em] text-brand-orange-ink'
+
 export default function FaqV1() {
-  const [category, setCategory] = useUrlState('topic', 'general')
-  const [openIndex, setOpenIndex] = useState(0)
+  const [param] = useUrlState('topic', 'general')
+  const [, setParams] = useSearchParams()
+  const topic = groups[param] ? param : 'general'
   const [search, setSearch] = useUrlState('q', '')
+  const [draft, setDraft] = useState(search)
+  const [openQuestion, setOpenQuestion] = useState(groups.general[0][0])
 
-  function selectCategory(cat) {
-    setCategory(cat)
-    setOpenIndex(0)
-  }
-
-  const rows = groups[category] || []
   const query = search.toLowerCase().trim()
-  const hasMatch = rows.some(([q, a]) => !query || (q + ' ' + a).toLowerCase().includes(query))
+  // [topicId, question, answer]
+  const rows = query
+    ? topics.flatMap(([id]) => groups[id].filter(([q, a]) => `${q} ${a}`.toLowerCase().includes(query)).map(([q, a]) => [id, q, a]))
+    : groups[topic].map(([q, a]) => [topic, q, a])
+
+  const toAnswers = () => document.getElementById('answers')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+
+  function showTopic(id, question) {
+    setDraft('')
+    // one URL update: choose the topic and drop any search term
+    setParams(id === 'general' ? {} : { topic: id }, { replace: true })
+    setOpenQuestion(question || groups[id][0][0])
+  }
 
   return (
     <>
-      <PageHero kicker="Helpful information" title="Frequently Asked Questions" text="Home · FAQ" img={photos.people} />
-
-      <section className="section bg-paper">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-[340px_minmax(0,1fr)] lg:items-start">
-            <aside className="lg:sticky lg:top-28">
-              <div className="rule-orange" />
-              <div className="mono-label text-brand-deep">Frequently asked questions</div>
-              <h2 className="display-md mt-4 text-brand-deep">Clear answers about the Foundation.</h2>
-              <p className="mt-5 text-sm leading-7 text-muted">
-                Browse by topic or search the questions.
-              </p>
-              <div className="relative mt-7">
+      {/* Hero */}
+      <section className="bg-sand-warm">
+        <div className={`${wrap} grid items-center gap-10 py-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,.9fr)] lg:gap-14 lg:py-14`}>
+          <div>
+            <p className={eyebrow}>Helpful information</p>
+            <h1 className="display-xl mt-3 text-brand-deep">How can we help?</h1>
+            <p className="mt-4 max-w-[34rem] text-lg leading-8 text-muted">
+              Find clear answers about Eagle’s Wings, support, programs, volunteering, donations, privacy and safeguarding.
+            </p>
+            <form
+              role="search"
+              className="mt-7 flex max-w-[34rem] flex-col gap-3 sm:flex-row sm:gap-0"
+              onSubmit={(e) => {
+                e.preventDefault()
+                setSearch(draft.trim())
+                toAnswers()
+              }}
+            >
+              <label htmlFor="faq-search" className="sr-only">
+                Search questions and answers
+              </label>
+              <div className="relative flex-1">
+                <Icon name="search" className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-subtle" />
                 <input
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search visible questions…"
-                  aria-label="Search visible questions"
-                  className="field pr-12"
+                  id="faq-search"
+                  type="search"
+                  value={draft}
+                  onChange={(e) => {
+                    setDraft(e.target.value)
+                    setSearch(e.target.value)
+                  }}
+                  className="field h-14 text-base sm:rounded-r-none"
+                  style={{ paddingLeft: '3rem' }}
+                  placeholder="Search questions and answers…"
                 />
-                <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-subtle">
-                  <Icon name="search" className="h-4 w-4" />
-                </span>
               </div>
-              <div className="mt-7 border-t border-line">
-                {Object.entries(labels).map(([key, label]) => (
-                  <button
-                    key={key}
-                    onClick={() => selectCategory(key)}
-                    aria-pressed={category === key}
-                    className={`flex w-full items-center justify-between border-b border-line px-3 py-3.5 text-left text-sm ${
-                      category === key ? 'border-l-2 border-l-brand-orange bg-brand-navy font-semibold text-white' : 'text-muted hover:text-brand-deep'
-                    }`}
-                  >
-                    <span>{label}</span>
-                    <Icon name="arrow-up-right" className="h-4 w-4" />
-                  </button>
-                ))}
-              </div>
-            </aside>
-            <div>
-              <div className="flex gap-3 border border-line bg-sand p-5">
-                <Icon name="badge-check" className="mt-0.5 h-5 w-5 shrink-0 text-brand-orange" />
-                <div>
-                  <div className="mono-label text-brand-deep">Straight answers</div>
-                  <p className="mt-2 text-sm leading-6 text-muted">Where something is not available yet, we say so.</p>
-                </div>
-              </div>
-              <div className="mt-6 border-t border-line">
-                {!hasMatch && (
-                  <div role="status" className="border-b border-line py-10 text-center">
-                    <Icon name="search-x" className="mx-auto h-6 w-6 text-brand-orange" />
-                    <h3 className="display-sm mt-4 text-brand-deep">No questions match “{search.trim()}”</h3>
-                    <p className="mt-2 text-sm text-muted">
-                      Try a different word, switch topic, or{' '}
-                      <Link to="/contact" className="font-semibold text-brand-navy underline underline-offset-4">
-                        ask the team directly
-                      </Link>
-                      .
-                    </p>
-                  </div>
-                )}
-                {rows.map(([q, a], i) => {
-                  const match = !query || (q + ' ' + a).toLowerCase().includes(query)
-                  if (!match) return null
-                  const open = openIndex === i
+              <button type="submit" className="inline-flex min-h-14 items-center justify-center rounded bg-brand-orange px-7 text-[0.9375rem] font-semibold text-brand-deep hover:bg-brand-orange-dark sm:rounded-l-none">
+                Search
+              </button>
+            </form>
+          </div>
+          <img
+            src={photos.people}
+            alt="Two men smiling in front of the classroom whiteboard"
+            fetchPriority="high"
+            decoding="async"
+            className="aspect-[3/2] w-full rounded object-cover object-[center_22%]"
+          />
+        </div>
+      </section>
+
+      {/* Popular questions */}
+      <section className="bg-[#e6f1fb]">
+        <div className={`${wrap} flex flex-col gap-4 py-5 lg:flex-row lg:items-center lg:gap-6`}>
+          <h2 className="shrink-0 font-display text-lg text-brand-deep">Popular questions</h2>
+          <ul className="grid flex-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {popular.map(([icon, label, id, question]) => (
+              <li key={label}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    showTopic(id, question)
+                    toAnswers()
+                  }}
+                  className="flex min-h-14 w-full items-center gap-3 rounded bg-surface px-4 text-left text-[0.9375rem] font-semibold text-brand-deep transition-colors hover:text-brand-navy"
+                >
+                  <Icon name={icon} className="h-6 w-6 shrink-0 text-brand-orange-ink" />
+                  <span className="flex-1 leading-snug">{label}</span>
+                  <Icon name="arrow-right" className="h-4 w-4 shrink-0" />
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Topics and answers */}
+      <section id="answers" className="scroll-mt-24 bg-paper py-12 md:py-14">
+        <div className={`${wrap} grid gap-10 lg:grid-cols-[18rem_minmax(0,1fr)] lg:items-start lg:gap-12`}>
+          <nav aria-label="FAQ topics" className="lg:sticky lg:top-28">
+            <h2 className="font-display text-xl text-brand-deep">Browse answers by topic.</h2>
+            <ul className="mt-4">
+              {topics.map(([id, label, icon]) => {
+                const on = !query && topic === id
+                return (
+                  <li key={id} className="border-b border-line">
+                    <button
+                      type="button"
+                      onClick={() => showTopic(id)}
+                      aria-pressed={on}
+                      className={`flex min-h-12 w-full items-center gap-4 rounded px-4 py-3 text-left text-[0.9375rem] ${
+                        on ? 'bg-brand-deep font-semibold text-white' : 'text-brand-deep hover:bg-sand-warm'
+                      }`}
+                    >
+                      <Icon name={icon} className="h-5 w-5 shrink-0" />
+                      <span className="flex-1">{label}</span>
+                      <span className={`tabular text-sm ${on ? 'text-on-navy' : 'text-subtle'}`}>{groups[id].length}</span>
+                      <Icon name="chevron-right" className="h-4 w-4 shrink-0" />
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          </nav>
+
+          <div>
+            <h2 className="display-md text-brand-deep" aria-live="polite">
+              {query ? `${rows.length} ${rows.length === 1 ? 'answer' : 'answers'} for “${search.trim()}”` : `${topicLabel[topic]} questions`}
+            </h2>
+            <p className="mt-4 flex items-start gap-3 rounded bg-[#e6f1fb] px-4 py-3 text-[0.9375rem] leading-6 text-brand-deep">
+              <Icon name="info" className="mt-0.5 h-5 w-5 shrink-0 text-brand-navy" />
+              <span>
+                <strong className="font-semibold">Straight answers.</strong> When something is not available yet, we say so.
+              </span>
+            </p>
+
+            {rows.length ? (
+              <div className="mt-4 space-y-2">
+                {rows.map(([id, q, a], i) => {
+                  const open = openQuestion === q
+                  const panel = `faq-panel-${i}`
                   return (
-                    <article key={q} className="border-b border-line">
-                      <button
-                        onClick={() => setOpenIndex(open ? -1 : i)}
-                        aria-expanded={open}
-                        className="flex w-full items-center justify-between gap-5 py-5 text-left"
-                      >
-                        <span className="display-sm text-brand-deep">{q}</span>
-                        <Icon name={open ? 'minus' : 'plus'} className="h-5 w-5 shrink-0 text-brand-orange" />
-                      </button>
-                      {open && <div className="max-w-3xl whitespace-pre-line pb-6 text-sm leading-7 text-muted">{a}</div>}
+                    <article key={`${id}-${q}`} className="rounded border border-line bg-surface">
+                      <h3>
+                        <button
+                          type="button"
+                          onClick={() => setOpenQuestion(open ? '' : q)}
+                          aria-expanded={open}
+                          aria-controls={panel}
+                          className="flex min-h-14 w-full items-center justify-between gap-5 px-4 py-3 text-left sm:px-5"
+                        >
+                          <span>
+                            {query && <span className={`mb-1 block ${eyebrow} text-[0.6875rem]`}>{topicLabel[id]}</span>}
+                            <span className="font-display text-[1.0625rem] leading-snug text-brand-deep">{q}</span>
+                          </span>
+                          <Icon name={open ? 'minus' : 'plus'} className="h-5 w-5 shrink-0 text-brand-orange-ink" />
+                        </button>
+                      </h3>
+                      {open && (
+                        <div id={panel} className="max-w-3xl whitespace-pre-line px-4 pb-5 text-[0.9375rem] leading-7 text-muted sm:px-5">
+                          {a}
+                        </div>
+                      )}
                     </article>
                   )
                 })}
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section border-y border-line bg-sand">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHead
-            eyebrow="Information standards"
-            title="What makes an answer publishable?"
-            text="Eagle’s Wings highlights the standards that govern the information it makes public."
-          />
-          <div className="mt-10 grid border-t border-line sm:grid-cols-2 lg:grid-cols-5">
-            {trustPoints.map(([i, t]) => (
-              <div key={t} className="border-b border-line p-5 lg:border-b-0 lg:border-r lg:last:border-r-0">
-                <Icon name={i} className="h-5 w-5 text-brand-orange" />
-                <div className="display-sm mt-3 text-brand-deep">{t}</div>
+            ) : (
+              <div role="status" className="mt-4 rounded border border-dashed border-line-strong bg-sand p-10 text-center">
+                <Icon name="search-x" className="mx-auto h-6 w-6 text-brand-orange-ink" />
+                <h3 className="display-sm mt-4 text-brand-deep">No questions match “{search.trim()}”</h3>
+                <p className="mt-2 text-[0.9375rem] text-muted">
+                  Try a different word, or{' '}
+                  <Link to="/contact" className="font-semibold text-brand-navy underline underline-offset-4">
+                    ask the team directly
+                  </Link>
+                  .
+                </p>
               </div>
-            ))}
+            )}
+
+            <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 rounded border border-line bg-sand-warm px-4 py-3 text-[0.9375rem] text-brand-deep">
+              <Icon name="triangle-alert" className="h-5 w-5 shrink-0 text-brand-navy" />
+              Is an answer unclear or out of date?
+              <Link to="/contact" className="inline-flex min-h-11 items-center font-semibold text-brand-navy underline underline-offset-4">
+                Tell us
+              </Link>
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="border-y border-line bg-sand text-brand-deep">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-            <div>
-              <div className="eyebrow text-brand-orange">Still have a question?</div>
-              <h2 className="display-lg mt-4 text-brand-deep">Ask the Foundation directly.</h2>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-muted">
-                For a question about programs, volunteering, partnerships, donations or a family support need, contact Eagle’s Wings so the
-                team can respond with context.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3 lg:justify-end">
+      {/* Standards */}
+      <section className="bg-sand-warm py-12 md:py-14">
+        <div className={wrap}>
+          <p className={eyebrow}>Information standards</p>
+          <h2 className="display-lg mt-2 text-brand-deep">What makes an answer trustworthy?</h2>
+          <p className="mt-3 text-[1.0625rem] leading-8 text-muted">Eagle’s Wings highlights the standards that govern the information it makes public.</p>
+          <ul className="mt-8 grid gap-y-8 sm:grid-cols-2 lg:grid-cols-5 lg:divide-x lg:divide-line-strong">
+            {standards.map(([icon, title, text]) => (
+              <li key={title} className="sm:pr-6 lg:px-6 lg:first:pl-0 lg:last:pr-0">
+                <Icon name={icon} className="h-9 w-9 text-brand-orange-ink" />
+                <h3 className="mt-4 font-display text-[1.0625rem] text-brand-deep">{title}</h3>
+                <p className="mt-1 text-[0.9375rem] leading-6 text-muted">{text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Closing */}
+      <section className="-mb-20 border-b border-navy-line bg-brand-deep text-white">
+        <div className={`${wrap} flex flex-col gap-8 py-12 lg:flex-row lg:items-center lg:justify-between`}>
+          <div>
+            <p className={eyebrow.replace('text-brand-orange-ink', 'text-brand-orange')}>Still have a question?</p>
+            <h2 className="display-md mt-3 max-w-[26ch] text-white">Tell us what you need and we will direct your message to the right person.</h2>
+          </div>
+          <div>
+            <div className="flex flex-wrap gap-3">
               <Button label="Contact us" href="/contact" />
-              <Button label="Explore programs" href="/programs" variant="light" />
+              <Button label="Explore programs" href="/programs" variant="outline" />
             </div>
+            <p className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[0.9375rem]">
+              <a href="tel:+255749044723" className="inline-flex min-h-11 items-center gap-2 text-white hover:text-brand-orange">
+                <Icon name="phone" className="h-4 w-4 text-brand-orange" /> {SITE.phone}
+              </a>
+              <a href={`mailto:${SITE.email}`} className="inline-flex min-h-11 items-center gap-2 text-white hover:text-brand-orange [overflow-wrap:anywhere]">
+                <Icon name="mail" className="h-4 w-4 text-brand-orange" /> {SITE.email}
+              </a>
+            </p>
           </div>
         </div>
       </section>

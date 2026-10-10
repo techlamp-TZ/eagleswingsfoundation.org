@@ -25,7 +25,7 @@ faq:
   - q: "Does open data mean publishing personal information?"
     a: "No. Responsible open data covers organisational information such as activities and finances. Details about children, families or older people should stay private unless there is clear, informed consent. Privacy comes before publishing."
   - q: "How will donors be kept informed?"
-    a: "Through reports and updates shared on the Reports page, and through answers to questions sent to the Foundation. This is a general commitment to communicate honestly. It is not a promise about particular dates, amounts or results."
+    a: "Through reports and updates shared on this website, and through answers to questions sent to the Foundation. This is a general commitment to communicate honestly. It is not a promise about particular dates, amounts or results."
   - q: "Where can I learn more about IATI?"
     a: "The official IATI website explains the standard, who uses it and how it works. It is written for many audiences, and its introductory pages are a good place to start."
 sources:
@@ -116,4 +116,4 @@ If the answers are mostly yes, that is a good sign. If not, ask a polite questio
 
 ## What this means at Eagle's Wings
 
-The Foundation was founded in 2025 and does not currently publish numeric results. It intends to share reporting openly, with care for privacy and consent, on its [Reports page](/reports) as it becomes available. If you have a question about how we share information, please [contact us](/contact).
+The Foundation was founded in 2025 and does not currently publish numeric results. It intends to share reporting openly, with care for privacy and consent, on this website as it becomes available. If you have a question about how we share information, please [contact us](/contact).

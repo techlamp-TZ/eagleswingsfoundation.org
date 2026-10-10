@@ -346,7 +346,7 @@ export default function DonateV1() {
             ))}
           </div>
           <div className="mt-9">
-            <Button label="View transparency resources" href="/reports" variant="dark" />
+            <Button label="See what we can show" href="/impact" variant="dark" />
           </div>
         </div>
       </section>

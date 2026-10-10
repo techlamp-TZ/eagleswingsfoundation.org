@@ -109,4 +109,4 @@ Afterwards, ask kindly what helped and what did not. Invite honest replies and a
 
 ## What this means at Eagle's Wings
 
-Eagle's Wings Foundation Tanzania promotes neuro-diversity awareness, including autism, ADHD, Down syndrome and intellectual disability. Sensory-aware planning is one everyday way to put that awareness into practice. Learn more about our [neuro-diversity awareness program](/programs/program-neurodiversity), and see our general approach to [events](/events).
+Eagle's Wings Foundation Tanzania promotes neuro-diversity awareness, including autism, ADHD, Down syndrome and intellectual disability. Sensory-aware planning is one everyday way to put that awareness into practice. Learn more about our [neuro-diversity awareness program](/programs/program-neurodiversity).

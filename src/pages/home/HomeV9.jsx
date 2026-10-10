@@ -1,29 +1,37 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Icon from '../../components/ui/Icon.jsx'
 import Button from '../../components/ui/Button.jsx'
-import VideoCard from '../../components/ui/VideoCard.jsx'
+import VideoModal from '../../components/ui/VideoModal.jsx'
+import HeroCollage from './HeroCollage.jsx'
 import { photos } from '../../data/photos.js'
-import { pathways } from '../../data/pathways.js'
 import { programDetails } from '../../data/programDetails.js'
-import { videos } from '../../data/media.js'
+import { videos, duration } from '../../data/media.js'
 import { SITE } from '../../config/site.js'
+import { supplier, catalogueItems, catalogueCategories } from '../../data/catalogue.js'
 import summary from '../../data/generated/home-summary.json'
+import './home.css'
 
-// Home: one job per section, in the order a visitor needs them.
-// Hero, find support, who we are, programs, activity videos, evidence,
-// ways to help, catalogue, reading and contact. Light paper throughout;
-// navy only for type, the footer and small structural accents.
+// Home: navy hero with a layered photo collage, then one job per section.
+// Hero, visitor pathways, introduction, five programs, session clips,
+// transparency, get involved, equipment, family resources and contact.
+// All names, figures, prices and clip descriptions come from the site's data
+// files; nothing here is invented for the layout.
 
 const wrap = 'mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'
 const textLink = 'inline-flex items-center gap-1.5 font-semibold text-brand-navy underline decoration-brand-orange decoration-2 underline-offset-[6px] hover:text-brand-deep'
 
-const homeVideos = ['supported-swimming', 'washing-up-together', 'drawing-together'].map((id) => videos.find((v) => v.id === id))
+const money = (n) => `TZS ${n.toLocaleString('en-US')}`
+const categoryName = (id) => catalogueCategories.find((c) => c.id === id)?.name ?? id
+const videoById = (id) => videos.find((v) => v.id === id)
+
+const heroVideo = videoById('supported-swimming')
+const storyVideos = ['supported-swimming', 'drawing-together', 'washing-up-together'].map(videoById)
 
 const programOrder = ['program-neurodiversity', 'program-elderly-care', 'program-education-therapy', 'program-life-skills', 'program-caregiver-training']
 
-// Small photographs for the home program list. Elderly care has no footage of
-// older people yet, so it renders an icon tile instead of a photo that would
-// misrepresent the program.
+// Elderly care has no footage of older people yet, so it renders an icon tile
+// instead of a photo that would misrepresent the program.
 const programThumbs = {
   'program-neurodiversity': [photos.childSmile, 'A child smiling during a session'],
   'program-education-therapy': [photos.exerciseBike, 'Physical activity on an exercise bike'],
@@ -31,152 +39,184 @@ const programThumbs = {
   'program-caregiver-training': [photos.lifeGardening, 'Caregiver and child gardening together'],
 }
 
+const pathways = [
+  ['users', 'For families', 'Find information and guidance for children, older people, families and caregivers.', 'Get family support', '/get-started'],
+  ['book-open', 'Our programs', 'Explore our five areas of support in Tegeta, Dar es Salaam.', 'View our programs', '/programs'],
+  ['heart', 'Support our work', 'Volunteer, donate or partner to help build more inclusive communities.', 'Explore ways to help', '/get-involved'],
+]
+
+const involved = [
+  {
+    title: 'Volunteer',
+    text: 'Share your time, skills and experience. We confirm the commitment before you start.',
+    action: 'Become a volunteer',
+    href: '/get-involved',
+    icon: 'users',
+    photo: [photos.lifeGardening, 'A young person and a caregiver watering the vegetable garden', 'center 40%'],
+  },
+  {
+    title: 'Donate',
+    text: 'Send a donation request. The team confirms the details with you; no payment is taken online.',
+    action: 'Donate now',
+    href: '/donate',
+    icon: 'heart',
+    primary: true,
+    photo: [photos.exerciseBike, 'A young person using an exercise bike in the activity room', 'center 35%'],
+  },
+  {
+    title: 'Partner',
+    text: 'For schools, clinics and companies who want a working relationship with the Foundation.',
+    action: 'Become a partner',
+    href: '/contact',
+    icon: 'handshake',
+    photo: [photos.people, 'A visitor and a Foundation staff member standing together', 'center 22%'],
+  },
+]
+
+const catalogueSample = ['fishing-jigsaw-puzzle-3-in-1-large-box', 'gym-ball-pump', 'flashcards', 'arm-trolley']
+  .map((id) => catalogueItems.find((i) => i.id === id))
+  .filter(Boolean)
+
+// Hand-drawn orange stroke used as a quiet accent under headings.
+function Stroke({ className = '' }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 160 14" fill="none" className={className}>
+      <path d="M3 10C40 2 96 2 157 6" stroke="var(--color-brand-orange)" strokeWidth="5" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+function Eyebrow({ children, onNavy = false }) {
+  return <p className={`home-eyebrow ${onNavy ? 'text-brand-orange' : 'text-brand-orange-ink'}`}>{children}</p>
+}
+
 export default function HomeV9() {
+  const [playing, setPlaying] = useState(null)
+
   return (
     <>
-      {/* 1. Hero: who we support and how. Text and photo never overlap. */}
-      <section className="surface-light bg-paper">
-        <div className={`${wrap} grid items-center gap-6 pb-14 pt-4 sm:gap-10 md:pt-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,.9fr)] lg:gap-16 lg:pb-20 lg:pt-14`}>
-          <div className="order-2 lg:order-1">
-            <h1 className="display-xl max-w-xl text-brand-deep">Inclusion begins with understanding.</h1>
-            <p className="lead mt-5 max-w-[34rem]">
-              We help children, older people, families and caregivers in Tegeta, Dar es Salaam, through practical learning and everyday care.
+      {/* 1. Hero: heading and actions beside a layered collage of real photos */}
+      <section className="overflow-hidden bg-brand-deep text-white">
+        <div className={`${wrap} grid gap-x-12 gap-y-8 pb-12 pt-8 sm:pt-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:pb-16 lg:pt-14`}>
+          <div className="lg:col-start-1 lg:row-start-1 lg:self-end">
+            <Stroke className="mb-5 h-3 w-28 -rotate-3 sm:w-36" />
+            <h1 className="home-h1 max-w-[12ch] text-white">
+              Every person deserves a place <span className="text-brand-orange">to belong.</span>
+            </h1>
+            <p className="mt-6 max-w-[30rem] text-lg leading-8 text-on-navy">
+              Supporting children, older people, families and caregivers in Tegeta, Dar es Salaam.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button label="Find support" href="/get-started" />
-              <Button label="Support our work" href="/donate" variant="light" icon="heart" />
+              <Button label="Get involved" href="/get-involved" variant="light" icon={null} />
             </div>
           </div>
-          <div className="order-1 lg:order-2">
-            <div className="relative mx-auto aspect-[16/11] max-h-[34rem] w-full overflow-hidden rounded bg-sand sm:aspect-[5/4] lg:aspect-[4/5]">
+          <HeroCollage video={heroVideo} onPlay={setPlaying} />
+        </div>
+      </section>
+
+      {/* 2. Visitor pathways */}
+      <section className="border-b border-line bg-sand-warm">
+        <ul className={`${wrap} grid divide-y divide-line-strong md:grid-cols-3 md:divide-x md:divide-y-0`}>
+          {pathways.map(([icon, title, text, action, href]) => (
+            <li key={title} className="flex gap-5 py-8 md:px-8 md:py-10 md:first:pl-0 md:last:pr-0">
+              <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-[#fde3c0] text-brand-orange-ink" aria-hidden="true">
+                <Icon name={icon} className="h-6 w-6" />
+              </span>
+              <div>
+                <h2 className="font-display text-xl text-brand-deep">{title}</h2>
+                <p className="mt-2 text-[0.9375rem] leading-6 text-muted">{text}</p>
+                <Link to={href} className="mt-3 inline-flex min-h-11 items-center gap-1.5 text-[0.9375rem] font-semibold text-brand-deep hover:text-brand-navy">
+                  {action} <Icon name="arrow-right" className="h-4 w-4 text-brand-orange-ink" />
+                </Link>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* 3. Introduction */}
+      <section className="section overflow-hidden">
+        <div className={`${wrap} grid items-center gap-10 md:grid-cols-2 lg:gap-20`}>
+          <div className="relative mx-auto w-full max-w-md md:max-w-none">
+            <div aria-hidden="true" className="home-blob absolute -right-3 -top-4 h-2/3 w-2/3 bg-brand-orange" />
+            <div className="home-blob relative aspect-[5/4] overflow-hidden bg-sand">
               <img
-                src="/photos/hero-wheelchair.webp"
-                alt="A Foundation caregiver standing behind a young woman who uses a wheelchair"
-                width={607}
-                height={1080}
-                className="absolute inset-0 h-full w-full object-cover object-[center_12%] sm:object-[center_22%] lg:object-top"
-                fetchPriority="high"
+                src={photos.child}
+                alt="A Foundation staff member and a young girl smiling together"
+                width={1200}
+                height={1599}
+                loading="lazy"
                 decoding="async"
+                className="absolute inset-0 h-full w-full object-cover object-[center_32%]"
               />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* 2. Start here: five clear visitor journeys */}
-      <section className="border-y border-line bg-surface py-14 md:py-20">
-        <div className={wrap}>
-          <div className="max-w-3xl">
-            <p className="eyebrow text-brand-orange">Start here</p>
-            <h2 className="display-lg mt-3 text-brand-deep">What would you like help with?</h2>
-            <p className="lead mt-4">Choose the situation closest to yours. Each one leads straight to the right program or page.</p>
-          </div>
-          <ul className="mt-10 grid gap-px overflow-hidden rounded border border-line bg-line md:grid-cols-2">
-            {pathways.map((p, i) => (
-              <li key={p.who} className={`bg-surface ${i === 0 ? 'md:col-span-2' : ''}`}>
-                <div className="flex h-full items-start gap-4 p-6 sm:p-8">
-                  <span className="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded bg-sand text-brand-orange-ink">
-                    <Icon name={p.icon} className="h-5 w-5" />
-                  </span>
-                  <span className="min-w-0">
-                    <Link to={p.to} className="group font-semibold leading-snug text-brand-deep hover:text-brand-navy">
-                      {p.who}
-                      <Icon name="arrow-right" className="ml-1.5 inline h-4 w-4 -translate-y-px text-brand-orange-ink transition-transform group-hover:translate-x-0.5" />
-                    </Link>
-                    <span className="mt-1.5 block text-[0.9375rem] leading-6 text-muted">{p.need}</span>
-                    <span className="mt-3 flex flex-wrap gap-2">
-                      {p.programs.map(([label, href]) => (
-                        <Link
-                          key={href}
-                          to={href}
-                          className="rounded border border-line bg-paper px-2.5 py-1 text-xs font-semibold text-brand-navy transition-colors hover:border-brand-navy hover:text-brand-deep"
-                        >
-                          {label}
-                        </Link>
-                      ))}
-                    </span>
-                  </span>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-8">
-            <Link to="/get-started" className={textLink}>
-              See how getting started works <Icon name="arrow-right" className="h-4 w-4" />
-            </Link>
-          </p>
-        </div>
-      </section>
-
-      {/* 3. Who we are */}
-      <section className="section">
-        <div className={`${wrap} grid items-center gap-10 md:grid-cols-[minmax(0,.85fr)_minmax(0,1.15fr)] lg:gap-20`}>
-          <div className="relative aspect-[4/5] overflow-hidden rounded bg-sand md:max-w-md">
-            <img
-              src={photos.child}
-              alt="A Foundation staff member and a young girl smiling together"
-              width={1200}
-              height={1599}
-              loading="lazy"
-              decoding="async"
-              className="absolute inset-0 h-full w-full object-cover object-[center_30%]"
-            />
-          </div>
           <div>
-            <h2 className="display-lg max-w-xl text-brand-deep">A community foundation in Tegeta, founded in 2025.</h2>
-            <div className="mt-6 max-w-[60ch] space-y-4 text-[1.0625rem] leading-8 text-muted">
-              <p>
-                Eagle’s Wings Foundation Tanzania works to improve the lives of people with disabilities and challenges, particularly children and older
-                people.
-              </p>
-              <p>
-                We focus on practical learning: helping families and caregivers understand a condition, build everyday routines and find the right
-                professional help when it is needed.
-              </p>
-            </div>
+            <Eyebrow>About Eagle’s Wings</Eyebrow>
+            <h2 className="home-h2 mt-3 max-w-[14ch] text-brand-deep">Belonging grows through everyday support.</h2>
+            <Stroke className="mt-3 h-3 w-32" />
+            <p className="mt-6 max-w-[56ch] text-[1.0625rem] leading-8 text-muted">
+              Eagle’s Wings Foundation Tanzania was founded in 2025 in Tegeta, Dar es Salaam, to improve the lives of people with disabilities and
+              challenges, particularly children and older people. We focus on practical learning for them and for the families and caregivers around
+              them.
+            </p>
             <p className="mt-7">
               <Link to="/about" className={textLink}>
-                About the Foundation <Icon name="arrow-right" className="h-4 w-4" />
+                About us <Icon name="arrow-right" className="h-4 w-4" />
               </Link>
             </p>
           </div>
         </div>
       </section>
 
-      {/* 4. Programs */}
-      <section className="border-t border-line bg-surface py-14 md:py-20">
-        <div className={`${wrap} grid gap-10 lg:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] lg:gap-16`}>
-          <div className="lg:sticky lg:top-28 lg:self-start">
-            <p className="eyebrow text-brand-orange">Programs</p>
-            <h2 className="display-lg mt-3 text-brand-deep">Five areas of support.</h2>
-            <p className="lead mt-4">Each program is educational and practical. Diagnosis and treatment stay with qualified health professionals.</p>
+      {/* 4. Five areas of support (official program names and descriptions) */}
+      <section className="border-y border-line bg-surface py-14 md:py-20">
+        <div className={`${wrap} grid gap-10 lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)] lg:gap-16`}>
+          <div>
+            <Eyebrow>Our programs</Eyebrow>
+            <h2 className="home-h2 mt-3 max-w-[13ch] text-brand-deep">Care, learning and greater independence.</h2>
+            <p className="lead mt-5">Each program is educational and practical. Diagnosis and treatment stay with qualified health professionals.</p>
+            <div className="relative mt-8 aspect-[16/10] overflow-hidden rounded-[1.5rem] bg-sand">
+              <img
+                src={photos.hydrotherapyPool}
+                alt="A child in a swim ring with a supervisor close by in the pool"
+                width={848}
+                height={478}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
             <p className="mt-6">
               <Link to="/programs" className={textLink}>
                 Compare all programs <Icon name="arrow-right" className="h-4 w-4" />
               </Link>
             </p>
           </div>
-          <ol className="divide-y divide-line border-y border-line">
-            {programOrder.map((id) => {
+          <ol className="grid content-start gap-3">
+            {programOrder.map((id, i) => {
               const p = programDetails[id]
               const thumb = programThumbs[id]
               return (
                 <li key={id}>
-                  <Link to={`/programs/${id}`} className="group grid gap-5 py-6 sm:grid-cols-[5rem_1fr_auto] sm:items-center">
+                  <Link
+                    to={`/programs/${id}`}
+                    className="group grid grid-cols-[2rem_4.5rem_1fr_auto] items-center gap-4 rounded border border-line bg-paper p-3 transition-colors hover:border-brand-navy sm:grid-cols-[2.5rem_5.5rem_1fr_auto] sm:gap-5 sm:p-4"
+                  >
+                    <span className="tabular font-display text-lg text-brand-orange-ink">{String(i + 1).padStart(2, '0')}</span>
                     {thumb ? (
-                      <img src={thumb[0]} alt={thumb[1]} className="h-20 w-20 rounded object-cover" loading="lazy" decoding="async" />
+                      <img src={thumb[0]} alt={thumb[1]} className="aspect-[4/3] w-full rounded object-cover" loading="lazy" decoding="async" />
                     ) : (
-                      <span className="grid h-20 w-20 place-items-center rounded border border-line text-brand-orange-ink" aria-hidden="true">
-                        <Icon name={p.icon} className="h-8 w-8" />
+                      <span className="grid aspect-[4/3] w-full place-items-center rounded bg-brand-orange text-brand-deep" aria-hidden="true">
+                        <Icon name={p.icon} className="h-7 w-7" />
                       </span>
                     )}
-                    <span>
-                      <span className="display-sm block text-brand-deep group-hover:text-brand-navy">{p.title}</span>
-                      <span className="mt-2 block max-w-[58ch] text-[0.9375rem] leading-7 text-muted">{p.intro}</span>
+                    <span className="min-w-0">
+                      <span className="block font-display text-[1.0625rem] leading-snug text-brand-deep group-hover:text-brand-navy">{p.title}</span>
+                      <span className="mt-1 line-clamp-2 block text-sm leading-6 text-muted">{p.intro}</span>
                     </span>
-                    <span className="hidden items-center gap-1 text-sm font-semibold text-brand-navy sm:inline-flex sm:justify-self-end">
-                      View program <Icon name="arrow-right" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </span>
+                    <Icon name="arrow-right" className="h-4 w-4 text-brand-orange-ink transition-transform group-hover:translate-x-1" />
                   </Link>
                 </li>
               )
@@ -185,190 +225,212 @@ export default function HomeV9() {
         </div>
       </section>
 
-      {/* 5. Real activities (click to play, silent clips) */}
-      <section className="section">
+      {/* 5. Session clips: click to play in a dialog, silent */}
+      <section className="bg-brand-deep py-14 text-white md:py-20">
         <div className={wrap}>
-          <h2 className="display-lg max-w-2xl text-brand-deep">Everyday learning at the centre.</h2>
-          <p className="lead mt-4">Short clips recorded during our sessions. They play only when you press Play and have no sound.</p>
-          <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] lg:gap-10">
-            <VideoCard video={homeVideos[0]} />
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
-              <VideoCard video={homeVideos[1]} />
-              <VideoCard video={homeVideos[2]} />
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,.8fr)] lg:items-end">
+            <div>
+              <Eyebrow onNavy>From our sessions</Eyebrow>
+              <h2 className="home-h2 mt-3 text-white">See inclusion in action.</h2>
             </div>
+            <p className="max-w-md text-[0.9375rem] leading-7 text-on-navy">
+              Short clips recorded during Foundation activities in Tegeta. They play only when you press play, and they have no sound.
+            </p>
           </div>
-          <p className="mt-8">
-            <Link to="/gallery" className={textLink}>
+          <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {storyVideos.map((v) => (
+              <li key={v.id}>
+                <button
+                  type="button"
+                  onClick={() => setPlaying(v)}
+                  className="group relative block aspect-[16/10] w-full overflow-hidden rounded border-4 border-brand-cream bg-brand-navy"
+                  aria-label={`Play video: ${v.title}, ${duration(v.seconds)}, no sound`}
+                >
+                  <img src={v.poster} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+                  <span className="absolute inset-0 grid place-items-center">
+                    <span className="grid h-14 w-14 place-items-center rounded-full bg-white text-brand-deep transition-transform group-hover:scale-105">
+                      <Icon name="play" className="h-6 w-6 translate-x-0.5 fill-current" />
+                    </span>
+                  </span>
+                </button>
+                <h3 className="mt-4 font-display text-lg text-white">{v.title}</h3>
+                <p className="mt-1 text-[0.9375rem] leading-6 text-on-navy">{v.text}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-10">
+            <Link
+              to="/gallery"
+              className="inline-flex items-center gap-1.5 font-semibold text-white underline decoration-brand-orange decoration-2 underline-offset-[6px] hover:text-brand-orange"
+            >
               More photos and clips in the gallery <Icon name="arrow-right" className="h-4 w-4" />
             </Link>
           </p>
         </div>
       </section>
 
-      {/* 6. Evidence available today, with honest publication status */}
-      <section className="border-y border-line bg-sand py-14 md:py-20">
-        <div className={wrap}>
-          <p className="eyebrow text-brand-orange">Facts and resources</p>
-          <h2 className="display-lg mt-3 max-w-2xl text-brand-deep">What we can show today.</h2>
-          <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded border border-line bg-line lg:grid-cols-4">
-            {[
-              ['2025', 'Founded in Tegeta, Dar es Salaam'],
-              [String(summary.programCount), 'Program areas, each with a published description'],
-              [String(summary.articleCount), 'Plain-language guides published for families'],
-              [String(summary.catalogueCount), 'Therapy and learning items listed in the catalogue'],
-            ].map(([value, label]) => (
-              <div key={label} className="bg-paper p-5 sm:p-7">
-                <dt className="sr-only">{label}</dt>
-                <dd>
-                  <span className="tabular block font-display text-4xl text-brand-deep sm:text-5xl">{value}</span>
-                  <span className="mt-2 block text-[0.9375rem] leading-6 text-muted">{label}</span>
-                </dd>
-              </div>
-            ))}
+      {/* 6. Transparency: verified facts only */}
+      <section className="border-b border-line bg-sand-warm py-14 md:py-20">
+        <div className={`${wrap} grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center lg:gap-16`}>
+          <div>
+            <Eyebrow>Our impact</Eyebrow>
+            <h2 className="home-h2 mt-3 text-brand-deep">
+              A young foundation. <span className="block">A lasting commitment.</span>
+            </h2>
+            <p className="mt-5 max-w-[52ch] text-[0.9375rem] leading-7 text-muted">
+              Founded in 2025, Eagle’s Wings Foundation Tanzania supports children, older people, families and caregivers in Tegeta. Our first annual
+              report is not published yet, and we do not publish estimates in the meantime.
+            </p>
+          </div>
+          <dl className="grid divide-y divide-line-strong sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+            <div className="py-6 sm:px-6 sm:py-2 sm:first:pl-0">
+              <Icon name="calendar-days" className="h-8 w-8 text-brand-orange-ink" />
+              <dd className="tabular home-serif mt-4 text-4xl text-brand-deep">2025</dd>
+              <dt className="mt-1 text-sm leading-6 text-muted">Founded in Tegeta, Dar es Salaam</dt>
+            </div>
+            <div className="py-6 sm:px-6 sm:py-2">
+              <Icon name="layers" className="h-8 w-8 text-brand-orange-ink" />
+              <dd className="tabular home-serif mt-4 text-4xl text-brand-deep">{summary.programCount}</dd>
+              <dt className="mt-1 text-sm leading-6 text-muted">Areas of support for children, older people and families</dt>
+            </div>
+            <div className="py-6 sm:px-6 sm:py-2 sm:last:pr-0">
+              <Icon name="file-text" className="h-8 w-8 text-brand-orange-ink" />
+              <dt className="sr-only">Evidence</dt>
+              <dd className="mt-4 grid gap-1">
+                <Link to="/impact" className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-brand-deep hover:text-brand-navy">
+                  What we can show <Icon name="arrow-right" className="h-4 w-4 text-brand-orange-ink" />
+                </Link>
+              </dd>
+            </div>
           </dl>
-          <div className="mt-8 grid gap-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
-            <p className="max-w-[62ch] text-[0.9375rem] leading-7 text-muted">
-              Our first annual report and verified activity figures are not published yet. We will share them once they are checked, and we do not
-              publish estimates in the meantime.
-            </p>
-            <div className="flex flex-wrap gap-x-6 gap-y-2">
-              <Link to="/impact" className={textLink}>
-                How we measure <Icon name="arrow-right" className="h-4 w-4" />
-              </Link>
-              <Link to="/reports" className={textLink}>
-                Reports <Icon name="arrow-right" className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* 7. Ways to help: donation leads, volunteering and partnership beside it */}
-      <section className="section surface-light">
-        <div className={`${wrap} grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]`}>
-          <div className="flex flex-col rounded border border-line bg-surface p-7 sm:p-10">
-            <h2 className="display-lg text-brand-deep">Help us reach more families.</h2>
-            <p className="lead mt-4">
-              A donation pays for learning materials, sessions and outreach. You send a request and the team confirms the details with you; no payment is
-              taken online.
-            </p>
-            <div className="mt-auto pt-8">
-              <Button label="Donate" href="/donate" icon="heart" />
-            </div>
-          </div>
-          <div className="grid gap-6">
-            <Link to="/get-involved" className="group rounded border border-line bg-surface p-7 transition-colors hover:border-brand-navy">
-              <span className="flex items-center justify-between gap-4">
-                <span className="display-sm text-brand-deep">Volunteer your time or skills</span>
-                <Icon name="arrow-right" className="h-5 w-5 shrink-0 text-brand-orange-ink transition-transform group-hover:translate-x-1" />
-              </span>
-              <span className="mt-2 block text-[0.9375rem] leading-7 text-muted">Help at sessions, events, communications or with professional expertise.</span>
-            </Link>
-            <Link to="/partners" className="group rounded border border-line bg-surface p-7 transition-colors hover:border-brand-navy">
-              <span className="flex items-center justify-between gap-4">
-                <span className="display-sm text-brand-deep">Partner with the Foundation</span>
-                <Icon name="arrow-right" className="h-5 w-5 shrink-0 text-brand-orange-ink transition-transform group-hover:translate-x-1" />
-              </span>
-              <span className="mt-2 block text-[0.9375rem] leading-7 text-muted">For schools, companies and organisations who want to work with us responsibly.</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Equipment catalogue */}
-      <section className="border-t border-line bg-surface py-14 md:py-20">
-        <div className={`${wrap} grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16`}>
-          <div>
-            <p className="eyebrow text-brand-orange">Equipment catalogue</p>
-            <h2 className="display-lg mt-3 text-brand-deep">Therapy and learning equipment, with prices.</h2>
-            <p className="lead mt-4">
-              Sensory, speech, motor and learning items, sold and delivered by OneStop Therapeutics. Search, compare prices in TZS and order on WhatsApp.
-            </p>
-            <div className="mt-7">
-              <Button label="Browse the catalogue" href="/catalogue" variant="outline" />
-            </div>
-          </div>
-          <div className="grid grid-cols-3 gap-3 sm:gap-4">
-            {[
-              ['/catalogue-img/sensory-room-play.webp', 'A sensory room with a swing, crash mat and soft play equipment'],
-              ['/catalogue-img/memory-chess.webp', 'Memory chess, a wooden matching game'],
-              ['/catalogue-img/balance-ball.webp', 'A balance ball for exercise and coordination'],
-            ].map(([src, alt], i) => (
-              <div key={src} className={`overflow-hidden rounded border border-line bg-white ${i === 0 ? 'col-span-3 aspect-[16/9]' : 'aspect-square'}`}>
-                <img src={src} alt={alt} loading="lazy" decoding="async" className={`h-full w-full ${i === 0 ? 'object-cover' : 'object-contain p-3'}`} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 9. Reading and contact */}
+      {/* 7. Get involved */}
       <section className="section">
-        <div className={`${wrap} grid gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,.9fr)] lg:gap-16`}>
+        <div className={`${wrap} grid gap-10 lg:grid-cols-[minmax(0,.75fr)_minmax(0,1.25fr)] lg:gap-14`}>
           <div>
-            <h2 className="display-lg text-brand-deep">Practical reading for families.</h2>
-            <ul className="mt-8 divide-y divide-line border-y border-line">
+            <Eyebrow>Get involved</Eyebrow>
+            <h2 className="home-h2 mt-3 max-w-[12ch] text-brand-deep">Make room for more possibilities.</h2>
+            <Stroke className="mt-3 h-3 w-32" />
+            <p className="mt-6 max-w-[40ch] text-[0.9375rem] leading-7 text-muted">
+              There are several ways to support inclusion and stronger communities in Tegeta. Each one starts with a conversation.
+            </p>
+          </div>
+          <ul className="grid gap-5 sm:grid-cols-3">
+            {involved.map((c) => (
+              <li key={c.title} className="flex flex-col overflow-hidden rounded border border-line bg-surface">
+                <div className="relative aspect-[4/3] bg-sand">
+                  <img src={c.photo[0]} alt={c.photo[1]} loading="lazy" decoding="async" style={{ objectPosition: c.photo[2] }} className="absolute inset-0 h-full w-full object-cover" />
+                  <span className="absolute left-3 top-3 grid h-10 w-10 place-items-center rounded-full bg-brand-orange text-brand-deep" aria-hidden="true">
+                    <Icon name={c.icon} className="h-5 w-5" />
+                  </span>
+                </div>
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="home-serif text-2xl text-brand-deep">{c.title}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-6 text-muted">{c.text}</p>
+                  <div className="mt-5">
+                    {c.primary ? (
+                      <Button label={c.action} href={c.href} />
+                    ) : (
+                      <Link to={c.href} className="inline-flex min-h-11 items-center gap-1.5 text-[0.9375rem] font-semibold text-brand-deep underline decoration-brand-orange decoration-2 underline-offset-[6px] hover:text-brand-navy">
+                        {c.action} <Icon name="arrow-right" className="h-4 w-4 text-brand-orange-ink" />
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 8. Equipment: a real price schedule from the catalogue */}
+      <section className="border-y border-line bg-surface py-14 md:py-20">
+        <div className={`${wrap} grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16`}>
+          <div>
+            <Eyebrow>Equipment catalogue</Eyebrow>
+            <h2 className="home-h2 mt-3 text-brand-deep">Therapy, sensory and learning equipment.</h2>
+            <p className="lead mt-5">
+              {summary.catalogueCount} items across cognitive, sensory, speech and motor categories, sold and delivered by {supplier.name}, a separate
+              supplier. Prices are in Tanzanian shillings and confirmed when you order.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Button label={`Browse all ${summary.catalogueCount} items`} href="/catalogue" variant="outline" />
+              <Button label="Order via WhatsApp" href={supplier.whatsapp} icon="whatsapp" variant="light" />
+            </div>
+          </div>
+          <ul className="divide-y divide-line border-y border-line">
+            {catalogueSample.map((item) => (
+              <li key={item.id}>
+                <Link to="/catalogue" className="group flex items-center gap-4 py-4">
+                  <span className="block h-14 w-14 shrink-0 overflow-hidden rounded border border-line bg-white">
+                    <img src={item.image} alt="" loading="lazy" decoding="async" className="h-full w-full object-contain p-1.5" />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate font-semibold text-brand-deep group-hover:text-brand-navy">{item.name}</span>
+                    <span className="mono-label block truncate text-subtle">{categoryName(item.category)}</span>
+                  </span>
+                  <span className="tabular shrink-0 font-display text-base text-brand-deep sm:text-lg">{money(item.variants[0].price)}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 9. Family resources and contact */}
+      <section className="section">
+        <div className={`${wrap} grid gap-10 lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)_minmax(0,.9fr)] lg:gap-12`}>
+          <div>
+            <Eyebrow>Family resources</Eyebrow>
+            <h2 className="home-h2 mt-3 max-w-[12ch] text-brand-deep">You don’t have to figure it out alone.</h2>
+            <p className="mt-5 max-w-[40ch] text-[0.9375rem] leading-7 text-muted">
+              Plain-language guidance on disability, inclusion, caregiving and everyday family life.
+            </p>
+          </div>
+          <div>
+            <ul className="divide-y divide-line border-y border-line">
               {summary.latest.map((a) => (
                 <li key={a.slug}>
-                  <Link to={`/blog/article-${a.slug}`} className="group grid grid-cols-[5.5rem_1fr] items-center gap-5 py-5 sm:grid-cols-[7rem_1fr]">
+                  <Link to={`/blog/article-${a.slug}`} className="group grid grid-cols-[4.5rem_1fr_auto] items-center gap-4 py-4">
                     <span className="block aspect-[4/3] overflow-hidden rounded bg-sand">
                       <img src={a.thumb} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />
                     </span>
-                    <span>
-                      <span className="block text-sm font-medium text-brand-orange-ink">{a.category}</span>
-                      <span className="mt-1 block font-semibold leading-snug text-brand-deep group-hover:text-brand-navy">{a.title}</span>
-                    </span>
+                    <span className="text-[0.9375rem] font-semibold leading-snug text-brand-deep group-hover:text-brand-navy">{a.title}</span>
+                    <Icon name="arrow-right" className="h-4 w-4 text-brand-orange-ink transition-transform group-hover:translate-x-1" />
                   </Link>
                 </li>
               ))}
             </ul>
             <p className="mt-6">
               <Link to="/blog" className={textLink}>
-                All {summary.articleCount} articles <Icon name="arrow-right" className="h-4 w-4" />
+                See all {summary.articleCount} resources <Icon name="arrow-right" className="h-4 w-4" />
               </Link>
             </p>
           </div>
-          <aside aria-labelledby="home-contact" className="self-start rounded border border-line bg-surface p-7 sm:p-8">
-            <h2 id="home-contact" className="display-md text-brand-deep">
-              Talk to the team
+          <aside aria-labelledby="home-contact" className="self-start lg:border-l lg:border-line lg:pl-12">
+            <h2 id="home-contact" className="home-serif text-[1.75rem] leading-tight text-brand-deep">
+              Let’s talk about the support you need.
             </h2>
-            <p className="mt-3 text-[0.9375rem] leading-7 text-muted">Ask about a program, a visit or how we can help your family.</p>
-            <dl className="mt-6 divide-y divide-line border-y border-line text-[0.9375rem]">
-              <div className="flex items-center justify-between gap-4 py-3">
-                <dt className="text-subtle">Phone</dt>
-                <dd>
-                  <a href="tel:+255749044723" className="font-semibold text-brand-deep hover:text-brand-navy">
-                    +255 749 044 723
-                  </a>
-                </dd>
-              </div>
-              <div className="flex items-center justify-between gap-4 py-3">
-                <dt className="text-subtle">WhatsApp</dt>
-                <dd>
-                  <a href={SITE.whatsapp} target="_blank" rel="noopener noreferrer" className="font-semibold text-brand-deep hover:text-brand-navy">
-                    Message us
-                  </a>
-                </dd>
-              </div>
-              <div className="flex items-center justify-between gap-4 py-3">
-                <dt className="text-subtle">Email</dt>
-                <dd className="min-w-0">
-                  <a href={`mailto:${SITE.email}`} className="break-all font-semibold text-brand-deep hover:text-brand-navy">
-                    {SITE.email}
-                  </a>
-                </dd>
-              </div>
-              <div className="flex items-center justify-between gap-4 py-3">
-                <dt className="text-subtle">Location</dt>
-                <dd className="font-semibold text-brand-deep">Tegeta, Dar es Salaam</dd>
-              </div>
-            </dl>
-            <div className="mt-6">
-              <Button label="Contact the team" href="/contact" variant="dark" icon="mail" />
+            <p className="mt-3 text-[0.9375rem] leading-7 text-muted">
+              Get in touch with our team to ask a question, find support or learn more about our programs.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button label="Contact the team" href="/contact" />
+              <Button label="WhatsApp" href={SITE.whatsapp} variant="outline" icon="whatsapp" />
             </div>
+            <p className="mt-5 text-[0.9375rem] text-muted">
+              Or call{' '}
+              <a href="tel:+255749044723" className="font-semibold text-brand-deep underline decoration-brand-orange underline-offset-4">
+                +255 749 044 723
+              </a>
+            </p>
           </aside>
         </div>
       </section>
+
+      <VideoModal video={playing} onClose={() => setPlaying(null)} />
     </>
   )
 }

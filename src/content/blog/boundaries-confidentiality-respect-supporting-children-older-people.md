@@ -115,4 +115,4 @@ The UN [Convention on the Rights of Persons with Disabilities](https://www.un.or
 
 Eagle's Wings Foundation exists to empower, encourage and educate people with special needs and older people, and to support their families. Respect and dignity are part of that mission. Anyone interested in volunteering should expect to learn and follow clear guidance about conduct and privacy.
 
-Learn more on the [volunteers page](/volunteers), read about our [mission and values](/mission-vision-values), or start a conversation through [Get Involved](/get-involved). You can also read our [privacy](/privacy) information.
+Learn more on the [volunteers page](/volunteers), read about our [mission and values](/about#mission), or start a conversation through [Get Involved](/get-involved). You can also read our [privacy](/privacy) information.

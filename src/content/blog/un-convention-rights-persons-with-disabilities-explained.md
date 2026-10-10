@@ -111,4 +111,4 @@ You do not need to be a lawyer to use the Convention's spirit. Communities can a
 
 Eagle's Wings Foundation Tanzania, based in Tegeta, Dar es Salaam, was founded in 2025 with a vision that people with special needs and disabilities are valued equally and can reach their full potential. Rights and dignity is one of our four pillars, and the CRPD's principles are close to how we think about our work.
 
-Explore our [neuro-diversity awareness program](/programs/program-neurodiversity), read our [mission and vision](/mission-vision-values), or see how to [get involved](/get-involved).
+Explore our [neuro-diversity awareness program](/programs/program-neurodiversity), read our [mission and vision](/about#mission), or see how to [get involved](/get-involved).

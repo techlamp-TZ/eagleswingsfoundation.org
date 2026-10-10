@@ -103,4 +103,4 @@ Readers have a role too. Ask for plain answers. Notice when a report avoids a qu
 
 The Foundation is at an early stage. It would rather say so than pretend otherwise. Its [Impact page](/impact) sets out the four things it intends to report on: reach, learning, practice and experience. It will not describe results it cannot honestly support.
 
-When reporting becomes available, it will be found on the [Reports page](/reports). If you have a question about how the Foundation works, please [contact us](/contact) and ask.
+When reporting becomes available, it will be published on this website. If you have a question about how the Foundation works, please [contact us](/contact) and ask.

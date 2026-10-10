@@ -89,4 +89,4 @@ Real growth, to us, looks like more people feeling valued, more families feeling
 
 ## What this means at Eagle's Wings
 
-We would rather do a few things carefully than many things badly. We will keep listening, keep our promises small and honest, and keep our values as the fixed point while the work develops. You can read the full statement of our purpose on our [mission, vision and values](/mission-vision-values) page, and learn more about who we are on the [About page](/about).
+We would rather do a few things carefully than many things badly. We will keep listening, keep our promises small and honest, and keep our values as the fixed point while the work develops. You can read the full statement of our purpose on our [mission, vision and values](/about#mission) page, and learn more about who we are on the [About page](/about).

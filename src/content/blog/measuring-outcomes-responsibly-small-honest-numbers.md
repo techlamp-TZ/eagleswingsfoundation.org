@@ -118,4 +118,4 @@ Be cautious of any group that reports large results very early, without explaini
 
 ## What this means at Eagle's Wings
 
-The Foundation does not currently publish numeric results. Its [Impact page](/impact) explains the four areas above, and its [Reports page](/reports) is where reporting will be shared as it becomes available. You may also like our piece on [reading a non-profit report with good questions](/blog/article-how-to-read-a-nonprofit-report-as-a-donor). If you have a question about how we measure our work, please [contact us](/contact).
+The Foundation does not currently publish numeric results. Its [Impact page](/impact) explains the four areas above, and reporting will be shared on this website as it becomes available. You may also like our piece on [reading a non-profit report with good questions](/blog/article-how-to-read-a-nonprofit-report-as-a-donor). If you have a question about how we measure our work, please [contact us](/contact).

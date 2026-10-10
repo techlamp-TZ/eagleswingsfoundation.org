@@ -8,8 +8,6 @@ import Programs from './pages/programs/Programs.jsx'
 import GetStarted from './pages/get-started/GetStarted.jsx'
 import ProgramDetail from './pages/programs/details/ProgramDetail.jsx'
 import GetInvolved from './pages/get-involved/GetInvolved.jsx'
-import Events from './pages/events/Events.jsx'
-import EventDetail from './pages/events/details/EventDetail.jsx'
 // The blog bundles every article's Markdown, so load it only when visited.
 const Blog = lazy(() => import('./pages/blog/Blog.jsx'))
 const ArticleDetail = lazy(() => import('./pages/blog/details/ArticleDetail.jsx'))
@@ -21,11 +19,7 @@ import Faq from './pages/faq/Faq.jsx'
 import Contact from './pages/contact/Contact.jsx'
 import Volunteers from './pages/volunteers/Volunteers.jsx'
 import VolunteerDetail from './pages/volunteers/details/VolunteerDetail.jsx'
-import MissionVisionValues from './pages/mission-vision-values/MissionVisionValues.jsx'
-import Testimonials from './pages/testimonials/Testimonials.jsx'
 import Impact from './pages/impact/Impact.jsx'
-import Reports from './pages/reports/Reports.jsx'
-import Partners from './pages/partners/Partners.jsx'
 import Careers from './pages/careers/Careers.jsx'
 import Privacy from './pages/privacy/Privacy.jsx'
 import Resources from './pages/resources/Resources.jsx'
@@ -52,9 +46,7 @@ export default function AppRoutes() {
 
         <Route path="get-involved" element={<GetInvolved />} />
 
-        <Route path="events" element={<Events />} />
-        <Route path="events/:eventId" element={<EventDetail />} />
-        <Route path="events/:eventId/v/:variant" element={<EventDetail />} />
+        <Route path="events/*" element={<Navigate to="/contact" replace />} />
 
         <Route path="blog" element={<Blog />} />
         <Route path="blog/:slug" element={<ArticleDetail />} />
@@ -74,11 +66,10 @@ export default function AppRoutes() {
         <Route path="volunteers" element={<Volunteers />} />
         <Route path="volunteers/:volunteerId" element={<VolunteerDetail />} />
 
-        <Route path="mission-vision-values" element={<MissionVisionValues />} />
-        <Route path="testimonials" element={<Testimonials />} />
+        <Route path="mission-vision-values" element={<Navigate to="/about#mission" replace />} />
         <Route path="impact" element={<Impact />} />
-        <Route path="reports" element={<Reports />} />
-        <Route path="partners" element={<Partners />} />
+        <Route path="reports" element={<Navigate to="/impact" replace />} />
+        <Route path="partners" element={<Navigate to="/contact" replace />} />
         <Route path="careers" element={<Careers />} />
         <Route path="privacy" element={<Privacy />} />
         <Route path="get-started" element={<GetStarted />} />

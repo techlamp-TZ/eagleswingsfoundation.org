@@ -113,4 +113,4 @@ We share these pillars as our approach and hope. We do not claim that they have 
 
 ## What this means at Eagle's Wings
 
-These four pillars guide how we plan our work. Read more about them, together with our mission and values, on the [mission, vision and values](/mission-vision-values) page. If you want to see how the pillars connect to our activities, our [programs](/programs) page is a good place to start.
+These four pillars guide how we plan our work. Read more about them, together with our mission and values, on the [mission, vision and values](/about#mission) page. If you want to see how the pillars connect to our activities, our [programs](/programs) page is a good place to start.

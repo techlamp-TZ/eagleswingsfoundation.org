@@ -13,10 +13,8 @@ const explore = [
 
 const resources = [
   ['News and stories', '/blog'],
-  ['Events', '/events'],
   ['Gallery', '/gallery'],
   ['Equipment catalogue', '/catalogue'],
-  ['Annual reports', '/reports'],
   ['FAQ', '/faq'],
   ['Privacy', '/privacy'],
 ]

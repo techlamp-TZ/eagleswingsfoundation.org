@@ -28,3 +28,6 @@ public/rss.xml
 public/sitemap.xml
 public/robots.txt
 eagleswings-site-upload.zip
+
+# Stale copy of a built upload (same content as dist)
+eagleswings-site-upload/

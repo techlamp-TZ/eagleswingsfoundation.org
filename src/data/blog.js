@@ -39,13 +39,13 @@ export const categoryCta = {
   'Healthy ageing': { to: '/programs/program-elderly-care', label: 'See elderly care support' },
   'Life skills': { to: '/programs/program-life-skills', label: 'See the Life Skills program' },
   'Family guidance': { to: '/programs/program-education-therapy', label: 'See education & therapy guidance' },
-  Foundation: { to: '/mission-vision-values', label: 'Read our mission and vision' },
+  Foundation: { to: '/about#mission', label: 'Read our mission and vision' },
   Volunteering: { to: '/volunteers', label: 'Explore volunteer roles' },
   Inclusion: { to: '/get-involved', label: 'Get involved' },
   Safeguarding: { to: '/privacy', label: 'Read our privacy information' },
-  Partnerships: { to: '/partners', label: 'Explore partnerships' },
-  Events: { to: '/events', label: 'See event formats' },
-  Transparency: { to: '/reports', label: 'Visit reports & transparency' },
+  Partnerships: { to: '/contact', label: 'Talk to us about partnering' },
+  Events: { to: '/contact', label: 'Ask about upcoming activities' },
+  Transparency: { to: '/impact', label: 'See what we can show' },
 }
 
 const WORDS_PER_MINUTE = 200

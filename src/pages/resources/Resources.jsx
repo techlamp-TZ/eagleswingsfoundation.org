@@ -7,8 +7,6 @@ import { photos } from '../../data/photos.js'
 
 const links = [
   ['gallery', 'Gallery', 'images', 'Approved photos and videos'],
-  ['reports', 'Annual reports', 'file-text', 'Transparency documents'],
-  ['partners', 'Partners', 'handshake', 'Partnership information'],
   ['careers', 'Careers', 'briefcase', 'Roles and opportunities'],
   ['faq', 'FAQ', 'circle-help', 'Common questions'],
   ['privacy', 'Privacy', 'shield-check', 'Data and privacy information'],

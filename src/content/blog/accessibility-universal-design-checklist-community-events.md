@@ -116,4 +116,4 @@ Ask attendees, carers and helpers what worked and what did not. Ask kindly and g
 
 ## What this means at Eagle's Wings
 
-Eagle's Wings Foundation Tanzania supports people with disabilities and challenges, and their families and caregivers, through community-based activities. Accessible planning is one way to make inclusion practical. Read more about how we share activities on our [events page](/events), and see how our [neuro-diversity awareness program](/programs/program-neurodiversity) supports understanding.
+Eagle's Wings Foundation Tanzania supports people with disabilities and challenges, and their families and caregivers, through community-based activities. Accessible planning is one way to make inclusion practical. See how our [neuro-diversity awareness program](/programs/program-neurodiversity) supports understanding.

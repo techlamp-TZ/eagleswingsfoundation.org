@@ -18,7 +18,7 @@ keyTakeaways:
   - "Partnership can take many forms, and it need not involve money."
   - "Good partners ask about needs first and commit to steady, respectful support."
   - "People's dignity, consent and safety come before publicity."
-  - "The best next step is a conversation through the Partners and Contact pages."
+  - "The best next step is a conversation through the Contact page."
 faq:
   - q: "Who can partner with us?"
     a: "Companies, other NGOs, community groups, professionals and institutions can all explore partnership. What matters most is shared respect for the dignity of people with disabilities and older people."
@@ -27,7 +27,7 @@ faq:
   - q: "Can we use your name in our marketing?"
     a: "Only with agreement. Use of any organisation's name, logo or images should be discussed and approved in advance, and people served must never be shown without informed consent."
   - q: "How do we begin?"
-    a: "Start with the Partners page for an overview, then use the Contact page to introduce yourself. A first conversation about needs and fit is the usual starting point."
+    a: "Use the Contact page to introduce yourself. A first conversation about needs and fit is the usual starting point."
 sources:
   - title: "Disability and health"
     publisher: "World Health Organization"
@@ -96,7 +96,7 @@ Eagle's Wings Foundation works to improve the lives of people with disabilities 
 
 ## Who do we contact?
 
-Start with the [Partners page](/partners), which gives an overview of how collaboration can work. Then use the [Contact page](/contact) to reach us. You can also find the Foundation on Instagram at @Eaglewings.tz.
+Use the [Contact page](/contact) to reach us. You can also find the Foundation on Instagram at @Eaglewings.tz.
 
 ## What this means at Eagle's Wings
 

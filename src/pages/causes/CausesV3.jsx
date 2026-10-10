@@ -74,7 +74,7 @@ export default function CausesV3() {
             <Partners items={partnerships} />
           </div>
           <div className="mt-9">
-            <Button label="Explore partnerships" href="/partners" variant="dark" />
+            <Button label="Talk to us about partnering" href="/contact" variant="dark" />
           </div>
         </div>
       </section>

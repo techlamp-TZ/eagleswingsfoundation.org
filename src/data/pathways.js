@@ -39,7 +39,7 @@ export const pathways = [
     to: '/get-involved',
     programs: [
       ['Get involved', '/get-involved'],
-      ['Partner with us', '/partners'],
+      ['Partner with us', '/contact'],
     ],
   },
   {

@@ -23,7 +23,6 @@ const pages = {
   '/programs': ['Programs', 'Five program areas: neuro-diversity awareness, elderly care support, education and therapy guidance, life skills and caregiver training.'],
   '/impact': ['Our Impact', 'How Eagle’s Wings measures and reports its work, and what has been verified so far.'],
   '/get-involved': ['Get Involved', 'Volunteer, partner or support Eagle’s Wings Foundation Tanzania.'],
-  '/events': ['Events', 'Planned event formats from Eagle’s Wings Foundation Tanzania. Dates and venues are announced once confirmed.'],
   '/blog': ['News & Stories', 'Plain-language articles for families, caregivers and communities on neuro-diversity, caregiving, healthy ageing and life skills.', '/photos/blog/news-hero.jpg'],
   '/contact': ['Contact', 'Contact Eagle’s Wings Foundation Tanzania in Tegeta, Dar es Salaam by phone, WhatsApp, email or the contact form.'],
   '/donate': ['Donate', 'Send a donation request to Eagle’s Wings Foundation Tanzania. No payment is taken online; the team confirms the details with you.'],
@@ -31,10 +30,6 @@ const pages = {
   '/catalogue': ['Equipment Catalogue', 'Therapy, sensory, speech and motor-function equipment from OneStop Therapeutics, with prices in TZS and ordering on WhatsApp.'],
   '/faq': ['FAQ', 'Answers to common questions about Eagle’s Wings programs, volunteering, donations, autism and life skills.'],
   '/volunteers': ['Volunteers', 'Volunteer roles at Eagle’s Wings Foundation Tanzania.'],
-  '/mission-vision-values': ['Mission, Vision & Values', 'The mission, vision and values of Eagle’s Wings Foundation Tanzania.'],
-  '/testimonials': ['Testimonials', 'How Eagle’s Wings publishes stories: only verified and with consent.'],
-  '/reports': ['Annual Reports', 'Annual reports and transparency documents from Eagle’s Wings Foundation Tanzania.'],
-  '/partners': ['Partners', 'How organisations can partner with Eagle’s Wings Foundation Tanzania.'],
   '/careers': ['Careers', 'Roles and opportunities at Eagle’s Wings Foundation Tanzania.'],
   '/privacy': ['Privacy Policy', 'How Eagle’s Wings Foundation Tanzania collects, uses and protects personal information.'],
   '/resources': ['Resources', 'Reports, media, answers, partnership information and opportunities in one place.'],
@@ -44,8 +39,6 @@ const pages = {
 const load = async (file) => import(pathToFileURL(path.join(root, 'src/data', file)).href)
 const { programDetails } = await load('programDetails.js')
 for (const [id, p] of Object.entries(programDetails)) pages[`/programs/${id}`] = [p.title, p.intro]
-const { eventDetails } = await load('eventDetails.js')
-for (const [id, e] of Object.entries(eventDetails)) pages[`/events/${id}`] = [e.title, e.intro]
 
 const blogDir = path.join(root, 'src/content/blog')
 for (const f of fs.readdirSync(blogDir).filter((x) => x.endsWith('.md'))) {

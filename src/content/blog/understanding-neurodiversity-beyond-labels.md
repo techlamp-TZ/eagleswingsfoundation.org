@@ -102,4 +102,4 @@ Imagine a family whose young son covers his ears at busy markets. A neighbour mi
 
 ## What this means at Eagle's Wings
 
-Eagle's Wings Foundation Tanzania, based in Tegeta, Dar es Salaam, works to raise awareness about autism, ADHD, Down syndrome and intellectual disability, and to support families and caregivers. Our view is simple: every person is valued equally and deserves the chance to reach their full potential. You can read more about this work on our [Neuro-diversity program page](/programs/program-neurodiversity), explore our [mission, vision and values](/mission-vision-values), or [contact us](/contact) with questions.
+Eagle's Wings Foundation Tanzania, based in Tegeta, Dar es Salaam, works to raise awareness about autism, ADHD, Down syndrome and intellectual disability, and to support families and caregivers. Our view is simple: every person is valued equally and deserves the chance to reach their full potential. You can read more about this work on our [Neuro-diversity program page](/programs/program-neurodiversity), explore our [mission, vision and values](/about#mission), or [contact us](/contact) with questions.

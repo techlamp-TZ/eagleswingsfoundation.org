@@ -22,7 +22,7 @@ function activeRouteId(pathname) {
 // effects (which mount before parent effects) would run first and this
 // default would fire after and silently clobber them back every time.
 export default function Layout() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   const id = activeRouteId(pathname)
 
   useLayoutEffect(() => {
@@ -30,9 +30,13 @@ export default function Layout() {
     document.title = title ? `${title} | Eagle's Wings Foundation Tanzania` : "Eagle's Wings Foundation Tanzania"
   }, [id])
 
+  // New page: start at the top, or at the section named in the URL hash
+  // (e.g. /about#mission).
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' })
-  }, [pathname])
+    const target = hash ? document.getElementById(decodeURIComponent(hash.slice(1))) : null
+    if (target) target.scrollIntoView({ behavior: 'instant', block: 'start' })
+    else window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [pathname, hash])
 
   return (
     <>

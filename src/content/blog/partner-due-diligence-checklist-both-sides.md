@@ -105,4 +105,4 @@ For an overview of the different forms partnership can take, see [ways organisat
 
 ## What this means at Eagle's Wings
 
-We welcome questions from prospective partners, and we ask our own. Our [Partners page](/partners) explains how we approach collaboration, and you can [contact us](/contact) to start a conversation. We would rather move slowly and get it right than promise too much too soon.
+We welcome questions from prospective partners, and we ask our own. You can [contact us](/contact) to start a conversation. We would rather move slowly and get it right than promise too much too soon.

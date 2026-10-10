@@ -192,7 +192,7 @@ export function PlannedTopics({ planned }) {
   )
 }
 
-export function Partners({ items, to = '/partners', cols = 'lg:grid-cols-4' }) {
+export function Partners({ items, to = '/contact', cols = 'lg:grid-cols-4' }) {
   return (
     <div className={`grid border-t border-line sm:grid-cols-2 ${cols}`}>
       {items.map(([i, t, d]) => (

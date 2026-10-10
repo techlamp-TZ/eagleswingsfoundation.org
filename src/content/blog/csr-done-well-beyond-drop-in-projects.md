@@ -102,4 +102,4 @@ For a first look at how to check that a partnership is sound, see our [partner d
 
 ## What this means at Eagle's Wings
 
-We are a young non-profit, and we value partners who are willing to listen, start modestly and stay. If that sounds like your organisation, read about working with us on our [Partners page](/partners) or [write to us](/contact). We would be glad to begin with a conversation about what would really help.
+We are a young non-profit, and we value partners who are willing to listen, start modestly and stay. If that sounds like your organisation, please [write to us](/contact). We would be glad to begin with a conversation about what would really help.

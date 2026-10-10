@@ -136,4 +136,4 @@ Before you share the report, read it as a stranger would.
 
 ## What this means at Eagle's Wings
 
-The Foundation was founded in 2025 and does not currently publish numeric results. Its [Impact page](/impact) lists the four things it intends to report on: reach, learning, practice and experience. Its [Reports page](/reports) is where reporting will be shared as it becomes available. We will use a checklist like this one to hold ourselves to account, and we welcome your questions through the [contact page](/contact).
+The Foundation was founded in 2025 and does not currently publish numeric results. Its [Impact page](/impact) lists the four things it intends to report on: reach, learning, practice and experience. Reporting will be shared on this website as it becomes available. We will use a checklist like this one to hold ourselves to account, and we welcome your questions through the [contact page](/contact).
