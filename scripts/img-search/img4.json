@@ -1,0 +1,40 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "modern community building people walking daytime"
+✅ Got 4 images
+{
+  "success": true,
+  "query": "modern community building people walking daytime",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/0112193107df.jpg",
+      "caption": "",
+      "source": "Gensler",
+      "original_width": "2000px",
+      "original_height": "1125px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7fa7f62dfb5c.jpg",
+      "caption": "",
+      "source": "Renée del Gaudio Architecture",
+      "original_width": "960px",
+      "original_height": "1232px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7d814a429904.jpg",
+      "caption": "",
+      "source": "Bjarke Ingels Group",
+      "original_width": "2000px",
+      "original_height": "1333px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/aa6eda3cb543.jpg",
+      "caption": "",
+      "source": "Visit Scotland",
+      "original_width": "1280px",
+      "original_height": "720px"
+    }
+  ]
+}

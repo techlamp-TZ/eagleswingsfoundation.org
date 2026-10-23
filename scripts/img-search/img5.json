@@ -1,0 +1,40 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "art therapy children painting special needs colorful"
+✅ Got 4 images
+{
+  "success": true,
+  "query": "art therapy children painting special needs colorful",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ff76de480710.jpg",
+      "caption": "",
+      "source": "Cottonwood Psychology",
+      "original_width": "1440px",
+      "original_height": "810px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/8fe7cb1c2c48.jpg",
+      "caption": "",
+      "source": "Hazel Health",
+      "original_width": "1024px",
+      "original_height": "1024px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b5d5b4d7d9b1.jpg",
+      "caption": "",
+      "source": "Melissa & Doug",
+      "original_width": "990px",
+      "original_height": "990px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/1d6b3cfd893a.jpg",
+      "caption": "",
+      "source": "PositivePsychology.com",
+      "original_width": "1280px",
+      "original_height": "720px"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "caregiver helping disabled adult community warm portrait"
+✅ Got 4 images
+{
+  "success": true,
+  "query": "caregiver helping disabled adult community warm portrait",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/569f1691d478.jpg",
+      "caption": "",
+      "source": "Faith Health Group",
+      "original_width": "1200px",
+      "original_height": "800px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/556a887e0886.jpg",
+      "caption": "",
+      "source": "www.solutionsforlivingathome.org",
+      "original_width": "5000px",
+      "original_height": "3335px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/17be20a0c516.jpg",
+      "caption": "",
+      "source": "AARP",
+      "original_width": "1449px",
+      "original_height": "833px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/a4ec3737c323.jpg",
+      "caption": "",
+      "source": "www.silverts.com",
+      "original_width": "828px",
+      "original_height": "1000px"
+    }
+  ]
+}

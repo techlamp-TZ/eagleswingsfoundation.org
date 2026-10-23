@@ -1,0 +1,40 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "diverse adults with disabilities community garden smiling"
+✅ Got 4 images
+{
+  "success": true,
+  "query": "diverse adults with disabilities community garden smiling",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/abfdd47e8733.jpg",
+      "caption": "",
+      "source": "Center for People With Disabilities",
+      "original_width": "1200px",
+      "original_height": "1200px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d27e3e4da7fd.jpg",
+      "caption": "",
+      "source": "Disability Rights Connecticut",
+      "original_width": "1536px",
+      "original_height": "2048px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c1659910f36c.jpg",
+      "caption": "",
+      "source": "City Bureau",
+      "original_width": "2500px",
+      "original_height": "1667px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/5c0c8fb36599.jpg",
+      "caption": "",
+      "source": "Los Angeles Daily News",
+      "original_width": "1999px",
+      "original_height": "1334px"
+    }
+  ]
+}

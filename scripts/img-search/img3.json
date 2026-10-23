@@ -1,0 +1,40 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "diverse healthcare team volunteers posing outdoors"
+✅ Got 4 images
+{
+  "success": true,
+  "query": "diverse healthcare team volunteers posing outdoors",
+  "count": 4,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/9a881aaf02e9.jpg",
+      "caption": "",
+      "source": "NYRR",
+      "original_width": "1200px",
+      "original_height": "675px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7c415482c0c2.jpg",
+      "caption": "",
+      "source": "www.healthjusticerecovery.org",
+      "original_width": "2500px",
+      "original_height": "2257px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/f5899f2b0a51.jpg",
+      "caption": "",
+      "source": "Shemmassian Academic Consulting",
+      "original_width": "2500px",
+      "original_height": "1424px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/90e62af6b06a.jpg",
+      "caption": "",
+      "source": "Muddy Paws Rescue",
+      "original_width": "2500px",
+      "original_height": "1667px"
+    }
+  ]
+}
