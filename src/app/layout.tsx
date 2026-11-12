@@ -1,66 +1,61 @@
-import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
 
-const inter = Inter({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
-});
+const description =
+  "Eagle's Wings Foundation Tanzania supports people with disabilities, older people, families and caregivers in Tegeta, Dar es Salaam through awareness, education, life skills and caregiver training.";
 
 export const metadata: Metadata = {
-  title: "Family Residences & Essential Enterprises | Empowering Lives",
-  description:
-    "FREE (Family Residences and Essential Enterprises, Inc.) supports more than 5,500 individuals with intellectual/developmental disabilities, mental illness, and traumatic brain injury. Founded in 1977, headquartered in Old Bethpage, NY.",
-  keywords: [
-    "FREE",
-    "Family Residences and Essential Enterprises",
-    "disability services",
-    "OPWDD",
-    "OMH",
-    "TBI",
-    "behavioral health",
-    "Old Bethpage",
-    "developmental disabilities",
-    "community services",
-  ],
-  authors: [{ name: "Family Residences and Essential Enterprises, Inc." }],
+  metadataBase: new URL("https://eagleswingsfoundation.org"),
+  title: "Eagle's Wings Foundation Tanzania | Every person deserves a place to belong",
+  description,
+  icons: { icon: "/favicon-48.png", apple: "/apple-touch-icon.png" },
   openGraph: {
-    title: "Family Residences & Essential Enterprises | Empowering Lives",
-    description:
-      "Helping individuals of all abilities reach their full potential and thrive in their communities since 1977.",
-    siteName: "FREE",
+    title: "Eagle's Wings Foundation Tanzania",
+    description,
+    siteName: "Eagle's Wings Foundation Tanzania",
+    images: ["/photos/hero.webp"],
     type: "website",
+    locale: "en_TZ",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Family Residences & Essential Enterprises",
-    description:
-      "Helping individuals of all abilities reach their full potential and thrive in their communities since 1977.",
+    title: "Eagle's Wings Foundation Tanzania",
+    description,
+    images: ["/photos/hero.webp"],
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: "#061f3f",
+};
+
+// Structured data so search engines can show the Foundation correctly.
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  name: "Eagle's Wings Foundation Tanzania",
+  alternateName: "Eagle's Wings",
+  url: "https://eagleswingsfoundation.org",
+  logo: "https://eagleswingsfoundation.org/eagles-wings-foundation-logo.png",
+  description,
+  email: "info@eagleswingsfoundation.org",
+  telephone: "+255 749 044 723",
+  foundingDate: "2025",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Tegeta",
+    addressLocality: "Dar es Salaam",
+    addressCountry: "TZ",
+  },
+  sameAs: ["https://instagram.com/eaglewings.tz"],
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${inter.variable} ${jakarta.variable} antialiased bg-background text-foreground`}
-        style={{ fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}
-      >
+    <html lang="en">
+      <body className="font-sans antialiased bg-background text-foreground">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
         {children}
-        <Toaster />
       </body>
     </html>
   );

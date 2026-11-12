@@ -1,0 +1,28 @@
+/* Typography for rendered Markdown article bodies (flat editorial system). */
+.article-prose { font-size: 1.075rem; line-height: 1.85; color: #22324a; }
+.article-prose > :first-child { margin-top: 0; }
+.article-prose h2 { font-family: var(--font-display); font-weight: 700; font-size: 1.9rem; line-height: 1.2; letter-spacing: -.01em; color: var(--color-brand-deep); margin: 3rem 0 1rem; }
+.article-prose h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; line-height: 1.25; color: var(--color-brand-deep); margin: 2.2rem 0 .75rem; }
+.article-prose p { margin: 0 0 1.2rem; }
+.article-prose ul, .article-prose ol { margin: 0 0 1.4rem; padding-left: 1.35rem; }
+.article-prose ul { list-style: disc; }
+.article-prose ol { list-style: decimal; }
+.article-prose li { margin: .45rem 0; padding-left: .25rem; }
+.article-prose li::marker { color: var(--color-brand-orange); font-weight: 600; }
+.article-prose strong { color: var(--color-brand-deep); font-weight: 600; }
+.article-prose a { color: var(--color-brand-navy); text-decoration: underline; text-decoration-color: var(--color-brand-orange); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.article-prose a:hover { color: var(--color-brand-deep); background: #fdecd0; }
+.article-prose blockquote { margin: 2rem 0; padding: 1.1rem 1.4rem; border-left: 3px solid var(--color-brand-orange); background: var(--color-sand); color: var(--color-brand-deep); }
+.article-prose blockquote p:last-child { margin-bottom: 0; }
+.article-prose hr { margin: 2.5rem 0; border: 0; border-top: 1px solid var(--color-line); }
+.article-prose img { max-width: 100%; height: auto; }
+.article-prose code { font-family: var(--font-mono); font-size: .9em; background: var(--color-sand); padding: .1em .35em; }
+.article-prose .prose-table { overflow-x: auto; margin: 1.75rem 0; border-top: 1px solid var(--color-brand-deep); }
+.article-prose table { width: 100%; border-collapse: collapse; font-size: .95rem; line-height: 1.55; }
+.article-prose th { text-align: left; font-family: var(--font-sans); font-size: .8125rem; font-weight: 600; color: var(--color-brand-deep); background: var(--color-sand); padding: .8rem 1rem; border-bottom: 1px solid var(--color-line); }
+.article-prose td { padding: .8rem 1rem; border-bottom: 1px solid var(--color-line); vertical-align: top; min-width: 8rem; }
+
+@media print {
+  .article-prose { font-size: 11pt; color: #000; }
+  .article-prose a { color: #000; text-decoration: underline; }
+}

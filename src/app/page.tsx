@@ -1,25 +1,26 @@
-import { Header } from "@/components/free/header";
-import { HeroSlider } from "@/components/free/hero-slider";
-import { AboutSection } from "@/components/free/about-section";
-import { ProgramsServices } from "@/components/free/programs-services";
-import { CoreValuesSection } from "@/components/free/core-values";
-import { NewsEvents } from "@/components/free/news-events";
-import { GetInvolved } from "@/components/free/get-involved";
-import { Newsletter } from "@/components/free/newsletter";
-import { Footer } from "@/components/free/footer";
+import { Header } from "@/components/ew/header";
+import { HeroSlider } from "@/components/ew/hero-slider";
+import { About, Programs, Values, News, GetInvolved, StayConnected } from "@/components/ew/sections";
+import { Footer } from "@/components/ew/footer";
 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-white focus:px-4 focus:py-2"
+      >
+        Skip to content
+      </a>
       <Header />
-      <main className="flex-1">
+      <main id="main" className="flex-1">
         <HeroSlider />
-        <AboutSection />
-        <ProgramsServices />
-        <CoreValuesSection />
-        <NewsEvents />
+        <About />
+        <Programs />
+        <Values />
+        <News />
         <GetInvolved />
-        <Newsletter />
+        <StayConnected />
       </main>
       <Footer />
     </div>

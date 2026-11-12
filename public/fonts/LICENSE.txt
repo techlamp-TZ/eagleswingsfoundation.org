@@ -1,0 +1,3 @@
+Figtree is licensed under the SIL Open Font License 1.1 (https://openfontlicense.org).
+Figtree: Copyright 2022 The Figtree Project Authors.
+Files from Fontsource (latin subset, variable weight).
