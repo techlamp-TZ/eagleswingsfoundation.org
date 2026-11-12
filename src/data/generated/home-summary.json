@@ -1,0 +1,28 @@
+{
+  "articleCount": 61,
+  "catalogueCount": 68,
+  "programCount": 5,
+  "latest": [
+    {
+      "slug": "mission-and-vision-in-plain-words",
+      "title": "Our Mission and Vision, Explained in Plain Words",
+      "category": "Foundation",
+      "excerpt": "What Eagle's Wings means by its mission to empower, encourage and educate, and its vision of full inclusion, explained simply and without jargon.",
+      "thumb": "/photos/child.webp"
+    },
+    {
+      "slug": "hygiene-routines-with-dignity-and-privacy-checklist",
+      "title": "A Checklist for Hygiene Routines with Dignity and Privacy",
+      "category": "Life skills",
+      "excerpt": "A respectful checklist for teaching personal hygiene routines to young people with disabilities, with privacy, choice and safety at the centre.",
+      "thumb": "/photos/stock/hand-washing-thumb.webp"
+    },
+    {
+      "slug": "sharing-care-tasks-across-a-family-checklist",
+      "title": "A Checklist for Sharing Care Tasks Across a Family",
+      "category": "Caregiving",
+      "excerpt": "A practical checklist to help relatives divide care tasks fairly, talk openly, and keep the person at the centre of every decision.",
+      "thumb": "/photos/stock/grandmother-bibi-thumb.webp"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+/* Home page only: editorial serif headings and the layered hero collage.
+   Newsreader is self-hosted (public/fonts, SIL Open Font License). */
+@font-face { font-family: "Newsreader"; src: url("/fonts/newsreader-latin-var.woff2") format("woff2"); font-weight: 200 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Newsreader"; src: url("/fonts/newsreader-latin-var-italic.woff2") format("woff2"); font-weight: 200 800; font-style: italic; font-display: swap; }
+
+.home-h1, .home-h2, .home-serif { font-family: "Newsreader", Georgia, "Times New Roman", serif; font-weight: 600; letter-spacing: -.018em; }
+.home-h1 { font-size: clamp(2.6rem, 5.4vw, 4.5rem); line-height: 1.02; }
+.home-h2 { font-size: clamp(2rem, 3.7vw, 3.1rem); line-height: 1.06; }
+.home-eyebrow { font-size: .8125rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+
+/* Organic photo shape for the introduction */
+.home-blob { border-radius: 46% 54% 58% 42% / 44% 40% 60% 56%; }
+
+/* --- Hero collage ---------------------------------------------------- */
+.collage { position: relative; width: 100%; aspect-ratio: 10 / 9; }
+.collage-slot { position: absolute; transform: translate3d(calc(var(--px, 0) * var(--depth, 0px)), calc(var(--py, 0) * var(--depth, 0px)), 0) rotate(var(--rot, 0deg)); transition: transform .5s cubic-bezier(.2, .8, .2, 1); }
+.collage-enter { animation: collageIn .7s cubic-bezier(.2, .8, .2, 1) both; animation-delay: var(--delay, 0ms); }
+.collage-float { animation: collageFloat 7s ease-in-out infinite; animation-delay: var(--float-delay, 0s); }
+.collage[data-paused="true"] .collage-float { animation-play-state: paused; }
+.collage-frame { position: relative; overflow: hidden; border: 6px solid var(--color-brand-cream); border-radius: 6px; background: var(--color-brand-navy); box-shadow: 0 18px 40px -22px rgba(3, 14, 31, .9); }
+.collage-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .9s ease; }
+.collage-frame img[data-active="true"] { opacity: 1; }
+
+@keyframes collageIn { from { opacity: 0; transform: translateY(22px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes collageFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+
+/* Reduced motion: a complete, still hero. (The global rule in index.css also
+   removes animations and transitions; this keeps the collage unshifted.) */
+@media (prefers-reduced-motion: reduce) {
+  .collage-slot { transform: rotate(var(--rot, 0deg)); }
+  .collage-enter, .collage-float { animation: none; }
+}
+
+/* Video dialog */
+.video-dialog { margin: auto; padding: 0; border: 0; width: min(92vw, 60rem); max-height: 92dvh; background: var(--color-brand-deep); color: #fff; border-radius: 6px; overflow: hidden; }
+.video-dialog::backdrop { background: rgba(3, 14, 31, .82); }

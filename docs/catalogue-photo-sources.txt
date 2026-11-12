@@ -1,0 +1,11 @@
+Catalogue product photos replaced with Pexels photos (free licence, no attribution required).
+These show the same type of product, not the exact item sold; the site labels them as illustrative.
+
+bubble-fish-light: https://www.pexels.com/photo/36529603/
+noise-cancelling-ear-muffs: https://www.pexels.com/photo/5202427/
+trampoline: https://www.pexels.com/photo/4005333/
+spiked-balance-cushion: https://www.pexels.com/photo/4959809/
+electric-toothbrush: https://www.pexels.com/photo/33215341/
+fidget-spinners: https://www.pexels.com/photo/1330638/
+resistance-band-loop-set-different-resistance: https://www.pexels.com/photo/12745676/
+tens: https://www.pexels.com/photo/13185368/
