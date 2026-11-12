@@ -37,7 +37,7 @@ const bankAccounts = [
     bank: 'CRDB Bank',
     color: '#C8102E',
     accent: '#C8102E',
-    logo: '/logos/crdb-bank.svg',
+    logo: '/logos/crdb-bank.png',
     accountName: 'Eagles Wings Foundation Tanzania',
     accountNumber: '10365565077',
     swift: 'CORUTZTZ',
