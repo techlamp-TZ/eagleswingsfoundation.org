@@ -163,11 +163,11 @@ export function AboutPage() {
           <div className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
             {[
               { name: 'Stella Rweyemamu', role: 'Director', photo: '/photos/team/Stella.png' },
-              { name: 'Stephen Krasinski', role: 'Staff', photo: '/photos/team/Mzungu.png' },
+              { name: 'Stephen Krasinski', role: 'Honorary Member', photo: '/photos/team/Mzungu.png' },
               { name: 'Paul Rweyemamu', role: 'Accountant', photo: '/photos/team/Paul_Rweyemamu.png' },
-              { name: 'Paschal Nsonda', role: 'Secretary', photo: '/photos/team/Tegemeo.png' },
-              { name: 'Doreen Temistocles', role: 'Staff', photo: '/photos/team/Doreen.png' },
-              { name: 'Winfrida Rweyemamu', role: 'Staff', photo: '/photos/team/Winfrida.png' },
+              { name: 'Tegemeo Nsonda', role: 'Secretary', photo: '/photos/team/Tegemeo.png' },
+              { name: 'Doreen Temistocles', role: 'Member', photo: '/photos/team/Doreen.png' },
+              { name: 'Winfrida Rweyemamu', role: 'Member', photo: '/photos/team/Winfrida.png' },
             ].map((m) => (
               <div key={m.name} className="group text-center">
                 <div className="overflow-hidden rounded-2xl bg-sand-warm">
