@@ -149,6 +149,42 @@ export function AboutPage() {
           </div>
         </div>
 
+        {/* ---- Meet the Team ---- */}
+        <div className="mt-14">
+          <Eyebrow>Our Team</Eyebrow>
+          <h2 className="text-2xl font-bold text-brand-deep sm:text-3xl">
+            Meet the people behind Eagle&apos;s Wings
+          </h2>
+          <p className="mt-2 max-w-2xl text-[0.9375rem] leading-7 text-brand-deep/70">
+            Our dedicated team works together to create a more inclusive community
+            in Tegeta and beyond.
+          </p>
+
+          <div className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
+            {[
+              { name: 'Stella Rweyemamu', role: 'Director', photo: '/photos/team/Stella.png' },
+              { name: 'Stephen Krasinski', role: 'Staff', photo: '/photos/team/Mzungu.png' },
+              { name: 'Paul Rweyemamu', role: 'Accountant', photo: '/photos/team/Paul_Rweyemamu.png' },
+              { name: 'Paschal Nsonda', role: 'Secretary', photo: '/photos/team/Tegemeo.png' },
+              { name: 'Doreen Temistocles', role: 'Staff', photo: '/photos/team/Doreen.png' },
+              { name: 'Winfrida Rweyemamu', role: 'Staff', photo: '/photos/team/Winfrida.png' },
+            ].map((m) => (
+              <div key={m.name} className="group text-center">
+                <div className="overflow-hidden rounded-2xl bg-sand-warm">
+                  <img
+                    src={m.photo}
+                    alt={m.name}
+                    className="aspect-[3/4] w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <p className="mt-3 text-[0.9375rem] font-bold text-brand-deep">{m.name}</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-orange-ink">{m.role}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* ---- Get Involved CTA ---- */}
         <div className="mt-10 overflow-hidden rounded-3xl bg-gradient-to-r from-brand-deep to-brand-navy shadow-xl">
           <div className="grid grid-cols-1 items-center md:grid-cols-12">
