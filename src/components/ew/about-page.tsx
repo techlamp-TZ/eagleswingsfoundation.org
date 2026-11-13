@@ -27,7 +27,7 @@ function WingLeaves({ className }: { className?: string }) {
 export function AboutPage() {
   return (
     <div className="bg-cream">
-      <div className="container-wide py-12 md:py-16">
+      <div className="container-wide py-8 md:py-16">
         {/* ---- Two balanced columns ---- */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
           {/* ===== LEFT COLUMN ===== */}
@@ -68,8 +68,8 @@ export function AboutPage() {
               </p>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
-              <a href="/about#mission" className="btn-pill-orange">
-                About Us <ArrowRight className="size-4" aria-hidden />
+              <a href="/donate" className="btn-pill-orange">
+                Support Us <ArrowRight className="size-4" aria-hidden />
               </a>
               <a href="/programs" className="btn-pill-outline">
                 Explore Our Programs <ArrowRight className="size-4" aria-hidden />

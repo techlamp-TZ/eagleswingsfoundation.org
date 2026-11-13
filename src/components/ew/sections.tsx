@@ -37,7 +37,7 @@ function Eyebrow({ children, onDark = false, center = false }: { children: React
 /* ------------------------------------------------------------ About */
 export function About() {
   return (
-    <section id="about" className="bg-sand-warm py-14 md:py-20">
+    <section id="about" className="bg-sand-warm py-10 md:py-20">
       <div className="container-wide grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
         <div className="flex flex-col lg:col-span-7">
           <Eyebrow>Who we are</Eyebrow>
@@ -146,7 +146,7 @@ export function Programs() {
   };
 
   return (
-    <section id="programs" className="scroll-mt-24 bg-white py-14 md:py-20">
+    <section id="programs" className="scroll-mt-24 bg-white py-10 md:py-20">
       <div className="container-wide">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
@@ -211,7 +211,7 @@ export function Programs() {
 /* ------------------------------------------------------------ Values */
 export function Values() {
   return (
-    <section id="values" className="relative overflow-hidden bg-brand-deep py-14 text-white md:py-20">
+    <section id="values" className="relative overflow-hidden bg-brand-deep py-10 text-white md:py-20">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-40"
@@ -261,7 +261,7 @@ export function Values() {
 /* ------------------------------------------------------------ News */
 export function News() {
   return (
-    <section id="news" className="bg-sand-warm py-14 md:py-20">
+    <section id="news" className="bg-sand-warm py-10 md:py-20">
       <div className="container-wide">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
@@ -324,7 +324,7 @@ const ways = [
 
 export function GetInvolved() {
   return (
-    <section id="get-involved" className="bg-white py-14 md:py-20">
+    <section id="get-involved" className="bg-white py-10 md:py-20">
       <div className="container-wide">
         <div className="mx-auto max-w-3xl text-center">
           <Eyebrow center>Get involved</Eyebrow>
@@ -409,7 +409,7 @@ export function StayConnected() {
     { icon: Youtube, label: "Watch on YouTube", value: "Eagle's Wings Foundation", href: site.youtube, external: true },
     { icon: MessageCircle, label: "Message us on WhatsApp", value: site.phone, href: site.whatsapp, external: true },
     { icon: Mail, label: "Email the team", value: site.email, href: `mailto:${site.email}`, external: false },
-  ];
+  ].filter((c) => c.href && c.href !== "#");
   return (
     <section id="stay-connected" className="relative overflow-hidden bg-gradient-to-br from-brand-navy to-brand-deep py-12 text-white md:py-16">
       <div

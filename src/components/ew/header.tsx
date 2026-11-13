@@ -42,21 +42,19 @@ function TopBar() {
             News &amp; stories
           </a>
           <span className="h-3 w-px bg-white/20" aria-hidden />
-          <a href={site.facebook} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">
-            Facebook
-          </a>
-          <span className="h-3 w-px bg-white/20" aria-hidden />
-          <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">
-            Instagram
-          </a>
-          <span className="h-3 w-px bg-white/20" aria-hidden />
-          <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">
-            LinkedIn
-          </a>
-          <span className="h-3 w-px bg-white/20" aria-hidden />
-          <a href={site.youtube} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">
-            YouTube
-          </a>
+          {[
+            { label: "Facebook", href: site.facebook },
+            { label: "Instagram", href: site.instagram },
+            { label: "LinkedIn", href: site.linkedin },
+            { label: "YouTube", href: site.youtube },
+          ].filter((l) => l.href && l.href !== "#").map((l, i) => (
+            <span key={l.label} className="contents">
+              {i > 0 && <span className="h-3 w-px bg-white/20" aria-hidden />}
+              <a href={l.href} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">
+                {l.label}
+              </a>
+            </span>
+          ))}
         </div>
       </div>
     </div>

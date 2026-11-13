@@ -78,24 +78,21 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2.5">
-            <a href={site.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="social-btn">
-              <Facebook className="size-4" />
-            </a>
-            <a href={site.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-btn">
-              <Instagram className="size-4" />
-            </a>
-            <a href={site.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-btn">
-              <Linkedin className="size-4" />
-            </a>
-            <a href={site.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="social-btn">
-              <Youtube className="size-4" />
-            </a>
-            <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="social-btn">
-              <MessageCircle className="size-4" />
-            </a>
-            <a href={`mailto:${site.email}`} aria-label="Email" className="social-btn">
-              <Mail className="size-4" />
-            </a>
+            {[
+              { icon: Facebook, label: "Facebook", href: site.facebook },
+              { icon: Instagram, label: "Instagram", href: site.instagram },
+              { icon: Linkedin, label: "LinkedIn", href: site.linkedin },
+              { icon: Youtube, label: "YouTube", href: site.youtube },
+              { icon: MessageCircle, label: "WhatsApp", href: site.whatsapp },
+              { icon: Mail, label: "Email", href: `mailto:${site.email}` },
+            ].filter((l) => l.href && l.href !== "#").map((l) => {
+              const Icon = l.icon;
+              return (
+                <a key={l.label} href={l.href} target={l.href.startsWith("mailto:") ? undefined : "_blank"} rel={l.href.startsWith("mailto:") ? undefined : "noopener noreferrer"} aria-label={l.label} className="social-btn">
+                  <Icon className="size-4" />
+                </a>
+              );
+            })}
           </div>
           <button
             type="button"
