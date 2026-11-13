@@ -80,8 +80,8 @@ export function HeroSlider() {
 
               <div className="container-wide relative flex h-full items-center">
                 <div className="max-w-2xl py-16">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
-                    <span className="size-1.5 rounded-full bg-orange" aria-hidden />
+                  <span className="inline-flex items-center gap-2 text-[0.8125rem] font-semibold text-white/90">
+                    <span className="h-px w-6 bg-orange" aria-hidden />
                     {s.eyebrow}
                   </span>
                   {i === 0 ? (
