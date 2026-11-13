@@ -75,6 +75,14 @@ export default function DonateV1() {
   const [urlMethod, setMethod] = useUrlState('method', 'mobile-money')
   const method = paymentMethods.some(([id, , , , ok]) => id === urlMethod && ok) ? urlMethod : 'mobile-money'
   const [openFaq, setOpenFaq] = useState(0)
+  const [copied, setCopied] = useState('')
+
+  function copyAccount(number) {
+    navigator.clipboard.writeText(number).then(() => {
+      setCopied(number)
+      setTimeout(() => setCopied(''), 2000)
+    })
+  }
   const { status, whatsappLink, submit, reset, done } = useEnquiry({
     form: 'giving',
     subject: 'Giving request',
@@ -291,28 +299,48 @@ export default function DonateV1() {
 
                     {/* Bank transfer details (shown when bank is selected) */}
                     {method === 'bank' && (
-                      <div className="mt-4 space-y-3">
+                      <div className="mt-5 border-t border-[#e3e5de] pt-5">
+                        <div className="flex items-center justify-between gap-3">
+                          <h3 className="m-0 text-sm font-bold tracking-tight text-brand-deep">Bank transfer details</h3>
+                          <span className="text-[0.4375rem] font-bold uppercase tracking-[1.3px] text-brand-deep/35">Tanzania</span>
+                        </div>
+                        <p className="mt-1.5 mb-3.5 text-[0.625rem] leading-relaxed text-brand-deep/45">Choose either account below. Our team can confirm the details and help with your receipt.</p>
+
                         {bankAccounts.map((b) => (
-                          <div key={b.bank} className="overflow-hidden rounded-lg border border-[#e3e5de] bg-white">
-                            <div className="px-4 py-3" style={{ borderBottom: `2px solid ${b.color}` }}>
-                              <img src={b.logo} alt={b.bank} className="h-7 max-w-[140px] object-contain object-left" />
+                          <article key={b.bank} className="mb-3 overflow-hidden rounded-[10px] border border-[#e3e5de] bg-white">
+                            <div className="flex h-[53px] items-center px-4" style={{ borderBottom: `2px solid ${b.accent}` }}>
+                              <img src={b.logo} alt={b.bank} className="h-7 max-w-[150px] object-contain object-left" />
                             </div>
-                            <div className="grid grid-cols-2 gap-x-4 gap-y-2 px-4 py-3 text-[0.625rem]">
+                            <dl className="m-0 grid grid-cols-[1.6fr_1fr] gap-x-4 gap-y-3 px-4 py-3.5">
                               <div>
-                                <span className="block font-semibold uppercase tracking-wide text-brand-deep/40">Account</span>
-                                <span className="block font-mono text-xs font-bold tracking-wider text-brand-deep">{b.accountNumber}</span>
+                                <dt className="mb-0.5 text-[0.5rem] font-semibold uppercase tracking-[0.65px] text-brand-deep/35">Account</dt>
+                                <dd className="m-0 flex items-center gap-2">
+                                  <span className="font-mono text-xs font-bold tracking-[0.45px] text-brand-deep">{b.accountNumber}</span>
+                                  <button
+                                    type="button"
+                                    onClick={() => copyAccount(b.accountNumber)}
+                                    className="rounded-[3px] bg-[#f0f4ee] px-1.5 py-0.5 text-[0.5rem] font-medium text-[#3e6156] transition-colors hover:bg-[#dde7d8]"
+                                  >
+                                    {copied === b.accountNumber ? 'Copied!' : 'Copy'}
+                                  </button>
+                                </dd>
                               </div>
                               <div>
-                                <span className="block font-semibold uppercase tracking-wide text-brand-deep/40">SWIFT</span>
-                                <span className="block font-mono font-semibold text-brand-deep">{b.swift}</span>
+                                <dt className="mb-0.5 text-[0.5rem] font-semibold uppercase tracking-[0.65px] text-brand-deep/35">SWIFT</dt>
+                                <dd className="m-0 font-mono text-[0.625rem] font-semibold tracking-[0.45px] text-brand-deep">{b.swift}</dd>
                               </div>
                               <div className="col-span-2">
-                                <span className="block font-semibold uppercase tracking-wide text-brand-deep/40">Name</span>
-                                <span className="block font-semibold text-brand-deep">{b.accountName}</span>
+                                <dt className="mb-0.5 text-[0.5rem] font-semibold uppercase tracking-[0.65px] text-brand-deep/35">Name</dt>
+                                <dd className="m-0 text-[0.625rem] font-semibold text-brand-deep">{b.accountName}</dd>
                               </div>
-                            </div>
-                          </div>
+                            </dl>
+                          </article>
                         ))}
+
+                        <p className="mt-1 flex items-start gap-1.5 text-[0.5625rem] leading-relaxed text-brand-deep/40">
+                          <Icon name="shield-check" className="mt-0.5 size-3.5 shrink-0" />
+                          For international transfers, use the SWIFT code. Complete your request so we can confirm receipt.
+                        </p>
                       </div>
                     )}
 
