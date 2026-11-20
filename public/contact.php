@@ -9,7 +9,14 @@
 // * Spam protection: honeypot field, minimum time on page, per-IP rate limit.
 //
 // ../contact-config.php (create it on the server, not in the repo):
-//   <?php return ['to' => 'info@eagleswingsfoundation.org', 'from' => 'no-reply@eagleswingsfoundation.org'];
+//   <?php return [
+//       'to'           => 'info@eagleswingsfoundation.org',
+//       'from'         => 'no-reply@eagleswingsfoundation.org',
+//       'beem_api_key' => 'YOUR_BEEM_API_KEY',
+//       'beem_secret'  => 'YOUR_BEEM_SECRET_KEY',
+//       'sms_to'       => '255749044723',       // foundation phone (no +)
+//       'sms_sender'   => 'EAGLESWINGS',        // registered Beem sender name
+//   ];
 
 declare(strict_types=1);
 
@@ -99,9 +106,11 @@ $record = ['received' => gmdate('c'), 'form' => $form, 'name' => $name, 'email' 
 $saved = @file_put_contents($root . '/contact-submissions.jsonl', json_encode($record, JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND | LOCK_EX);
 @chmod($root . '/contact-submissions.jsonl', 0600);
 
+$clean = fn (string $s): string => str_replace(["\r", "\n"], ' ', $s);
+
+// ── Email notification ──
 $delivered = false;
 if ($to !== '' && filter_var($to, FILTER_VALIDATE_EMAIL)) {
-    $clean = fn (string $s): string => str_replace(["\r", "\n"], ' ', $s);
     $mailSubject = '=?UTF-8?B?' . base64_encode('[Website: ' . $clean($form) . '] ' . $clean($subject)) . '?=';
     $lines = [];
     foreach ($extras as $k => $v) {
@@ -117,7 +126,61 @@ if ($to !== '' && filter_var($to, FILTER_VALIDATE_EMAIL)) {
     $delivered = @mail($to, $mailSubject, $body, implode("\r\n", $headers));
 }
 
+// ── SMS notification via Beem Africa (donation requests only) ──
+$smsSent = false;
+$beemKey    = trim((string) ($config['beem_api_key'] ?? ''));
+$beemSecret = trim((string) ($config['beem_secret'] ?? ''));
+$smsTo      = trim((string) ($config['sms_to'] ?? ''));
+$smsSender  = trim((string) ($config['sms_sender'] ?? 'EAGLESWINGS'));
+
+if ($form === 'giving' && $beemKey !== '' && $beemSecret !== '' && $smsTo !== '') {
+    $amt  = $clean($extras['amountTZS'] ?? '?');
+    $freq = $clean($extras['frequency'] ?? 'One-time');
+    $prog = $clean($extras['program'] ?? '');
+    $pay  = $clean($extras['paymentPreference'] ?? '');
+    $ph   = $clean($extras['phone'] ?? '');
+
+    $smsBody = "New donation request!\n"
+        . "Name: {$clean($name)}\n"
+        . "Amount: TZS {$amt} ({$freq})\n"
+        . "Program: {$prog}\n"
+        . "Payment: {$pay}\n"
+        . "Email: {$clean($email)}"
+        . ($ph !== '' ? "\nPhone: {$ph}" : '');
+
+    $beemPayload = json_encode([
+        'source_addr'   => $smsSender,
+        'schedule_time'=> '',
+        'encoding'     => 0,
+        'message'      => $smsBody,
+        'recipients'   => [['recipient_id' => 1, 'dest_addr' => $smsTo]],
+    ]);
+
+    $ch = curl_init('https://apisms.bfrnd.com/v1/send');
+    curl_setopt_array($ch, [
+        CURLOPT_POST           => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT        => 10,
+        CURLOPT_HTTPHEADER     => [
+            'Content-Type: application/json',
+            'Authorization: Basic ' . base64_encode($beemKey . ':' . $beemSecret),
+        ],
+        CURLOPT_POSTFIELDS     => $beemPayload,
+    ]);
+    $smsRes = curl_exec($ch);
+    $smsCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+    $smsSent = ($smsCode >= 200 && $smsCode < 300);
+
+    // Log SMS result for debugging.
+    @file_put_contents(
+        $root . '/contact-data/sms-log.jsonl',
+        json_encode(['t' => gmdate('c'), 'to' => $smsTo, 'code' => $smsCode, 'ok' => $smsSent, 'res' => mb_substr((string) $smsRes, 0, 500)], JSON_UNESCAPED_UNICODE) . "\n",
+        FILE_APPEND | LOCK_EX
+    );
+}
+
 if (!$delivered && $saved === false) {
     respond(500, ['ok' => false, 'error' => 'server']);
 }
-respond(200, ['ok' => true, 'delivered' => $delivered]);
+respond(200, ['ok' => true, 'delivered' => $delivered, 'sms' => $smsSent]);
