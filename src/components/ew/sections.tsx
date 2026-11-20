@@ -373,7 +373,7 @@ export function GetInvolved() {
           <div className="grid grid-cols-1 md:grid-cols-5">
             <div className="relative hidden md:col-span-2 md:block">
               <img
-                src="/photos/child-smile.webp"
+                src="/photos/people/child-smile.webp"
                 alt="A child smiling at the Eagle's Wings centre"
                 className="absolute inset-0 size-full object-cover"
                 loading="lazy"
@@ -428,8 +428,8 @@ export function StayConnected() {
           </p>
           <div className="mt-6 hidden gap-3 lg:flex">
             <img src="/photos/team/team-together-320w.webp" alt="The Eagle's Wings team with arms around each other in front of the Foundation banner" className="h-28 w-40 rounded-xl object-cover" loading="lazy" />
-            <img src="/photos/play-basketball.webp" alt="A child playing basketball at the centre" className="h-28 w-40 rounded-xl object-cover" loading="lazy" />
-            <img src="/photos/life-gardening.webp" alt="Young people gardening together" className="h-28 w-40 rounded-xl object-cover" loading="lazy" />
+            <img src="/photos/activities/play-basketball.webp" alt="A child playing basketball at the centre" className="h-28 w-40 rounded-xl object-cover" loading="lazy" />
+            <img src="/photos/life-skills/life-gardening.webp" alt="Young people gardening together" className="h-28 w-40 rounded-xl object-cover" loading="lazy" />
           </div>
         </div>
         <ul className="space-y-3 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md sm:p-6">

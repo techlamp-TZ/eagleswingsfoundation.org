@@ -136,7 +136,7 @@ export default function DonateV1() {
 
               <div className="relative mt-8 overflow-hidden rounded-lg rounded-tr-[5rem] bg-[#e9e2ca]" style={{ aspectRatio: '1.22' }}>
                 <img
-                  src="/photos/family.webp"
+                  src="/photos/people/family.webp"
                   alt="An adult and a child, close together"
                   className="size-full object-cover"
                 />

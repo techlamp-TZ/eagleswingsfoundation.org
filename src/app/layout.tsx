@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Eagle's Wings Foundation Tanzania",
     description,
     siteName: "Eagle's Wings Foundation Tanzania",
-    images: ["/photos/hero.webp"],
+    images: ["/photos/hero/hero.webp"],
     type: "website",
     locale: "en_TZ",
   },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Eagle's Wings Foundation Tanzania",
     description,
-    images: ["/photos/hero.webp"],
+    images: ["/photos/hero/hero.webp"],
   },
 };
 

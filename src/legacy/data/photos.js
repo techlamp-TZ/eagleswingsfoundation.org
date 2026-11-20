@@ -11,33 +11,41 @@
 //    proper originals when available.
 
 export const photos = {
-  // --- photographs (high resolution) ---
-  hero: '/photos/hero.webp',
-  child: '/photos/child.webp',
-  care: '/photos/care.webp',
-  people: '/photos/people.webp',
-  family: '/photos/family.webp',
-  learning: '/photos/learning.webp',
-  galleryExtra1: '/photos/gallery-extra-1.webp',
-  galleryExtra2: '/photos/gallery-extra-2.webp',
-  galleryExtra3: '/photos/gallery-extra-3.webp',
+  // --- hero ---
+  hero: '/photos/hero/hero.webp',
 
-  // --- field stills (low resolution — tiles only) ---
-  classroomTeaching: '/photos/classroom-teaching.webp', // teacher at whiteboard, "Welcome to Eagle's Wings Foundation"
-  childSmile: '/photos/child-smile.webp', // smiling boy clapping on a sofa
-  joyPortrait: '/photos/joy-portrait.webp', // staff member and boy laughing together
-  lifeMopping: '/photos/life-mopping.webp', // life skills: mopping a floor
-  lifeLaundry: '/photos/life-laundry.webp', // life skills: folding laundry
-  lifeLaundryLine: '/photos/life-laundry-line.webp', // life skills: hanging washing
-  lifeGardening: '/photos/life-gardening.webp', // life skills: gardening with a caregiver
-  lifeWheelchairCare: '/photos/life-wheelchair-care.webp', // life skills: cleaning equipment
-  lifeCarryingWater: '/photos/life-carrying-water.webp', // life skills: carrying water
-  exerciseBike: '/photos/exercise-bike.webp', // physical activity: exercise bike
-  playBasketball: '/photos/play-basketball.webp', // physical activity: basketball
-  hydrotherapyPool: '/photos/hydrotherapy-pool.webp', // swimming / hydrotherapy session
-  hydrotherapySupport: '/photos/hydrotherapy-support.webp', // supported swimming
-  learningDrawing: '/photos/learning-drawing.webp', // children drawing together
-  learningWriting: '/photos/learning-writing.webp', // writing practice
+  // --- people (high resolution) ---
+  child: '/photos/people/child.webp',
+  care: '/photos/people/care.webp',
+  people: '/photos/people/people.webp',
+  family: '/photos/people/family.webp',
+  childSmile: '/photos/people/child-smile.webp',
+  joyPortrait: '/photos/people/joy-portrait.webp',
+
+  // --- gallery ---
+  galleryExtra1: '/photos/gallery/gallery-extra-1.webp',
+  galleryExtra2: '/photos/gallery/gallery-extra-2.webp',
+  galleryExtra3: '/photos/gallery/gallery-extra-3.webp',
+
+  // --- activities ---
+  classroomTeaching: '/photos/activities/classroom-teaching.webp',
+  exerciseBike: '/photos/activities/exercise-bike.webp',
+  playBasketball: '/photos/activities/play-basketball.webp',
+  hydrotherapyPool: '/photos/activities/hydrotherapy-pool.webp',
+  hydrotherapySupport: '/photos/activities/hydrotherapy-support.webp',
+
+  // --- learning ---
+  learning: '/photos/learning/learning.webp',
+  learningDrawing: '/photos/learning/learning-drawing.webp',
+  learningWriting: '/photos/learning/learning-writing.webp',
+
+  // --- life skills ---
+  lifeMopping: '/photos/life-skills/life-mopping.webp',
+  lifeLaundry: '/photos/life-skills/life-laundry.webp',
+  lifeLaundryLine: '/photos/life-skills/life-laundry-line.webp',
+  lifeGardening: '/photos/life-skills/life-gardening.webp',
+  lifeWheelchairCare: '/photos/life-skills/life-wheelchair-care.webp',
+  lifeCarryingWater: '/photos/life-skills/life-carrying-water.webp',
 
   // --- stock photographs: illustrative only, not Foundation programmes or beneficiaries ---
   // Pexels licence: free to use, no attribution required.

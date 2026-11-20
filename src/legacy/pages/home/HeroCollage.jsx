@@ -12,7 +12,7 @@ import { duration } from '../../data/media.js'
 // [src, alt, object-position]
 const sets = [
   {
-    main: ['/photos/hero-wheelchair.webp', 'A Foundation caregiver standing behind a young woman who uses a wheelchair', 'center 18%'],
+    main: ['/photos/hero/hero-wheelchair.webp', 'A Foundation caregiver standing behind a young woman who uses a wheelchair', 'center 18%'],
     top: [photos.child, 'A Foundation staff member and a young girl smiling together', 'center 58%'],
     bottom: [photos.learningDrawing, 'Two young people colouring a drawing at a low table', 'center'],
   },

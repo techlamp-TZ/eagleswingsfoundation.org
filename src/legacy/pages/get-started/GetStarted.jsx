@@ -79,7 +79,7 @@ function Eyebrow({ children, onNavy = false }) {
 }
 
 export default function GetStarted() {
-  useSeo({ title: 'Find Support', description: DESCRIPTION, path: '/get-started', image: '/photos/hero-wheelchair.webp' })
+  useSeo({ title: 'Find Support', description: DESCRIPTION, path: '/get-started', image: '/photos/hero/hero-wheelchair.webp' })
 
   return (
     <>
@@ -98,7 +98,7 @@ export default function GetStarted() {
           <div className="grid grid-cols-[1.5fr_1fr] gap-1 border-t-4 border-brand-orange lg:border-l-4 lg:border-t-0">
             <div className="relative row-span-2 min-h-[320px] lg:min-h-[440px]">
               <img
-                src="/photos/hero-wheelchair.webp"
+                src="/photos/hero/hero-wheelchair.webp"
                 alt="A young woman who uses a wheelchair, with a Foundation caregiver behind her"
                 width={607}
                 height={1080}

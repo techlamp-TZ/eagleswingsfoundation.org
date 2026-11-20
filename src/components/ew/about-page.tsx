@@ -191,7 +191,7 @@ export function AboutPage() {
             {/* Photo */}
             <div className="relative min-h-[260px] md:col-span-4">
               <img
-                src="/photos/joy-portrait.webp"
+                src="/photos/people/joy-portrait.webp"
                 alt="A caregiver and child smiling together at the Eagle's Wings centre"
                 className="absolute inset-0 size-full object-cover object-top"
                 loading="lazy"
