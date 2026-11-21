@@ -21,6 +21,8 @@ import {
 } from "lucide-react";
 import { articles, articleCount, programs, site, stats, values } from "./data";
 import { cn } from "@/lib/utils";
+import { FadeUp, FadeIn, ScaleIn, StaggerChildren, StaggerItem, CountUp } from "./motion";
+import { WingAccent, FlowLine, DotPattern } from "./svg-accents";
 
 function Eyebrow({ children, onDark = false, center = false }: { children: React.ReactNode; onDark?: boolean; center?: boolean }) {
   return (
@@ -37,39 +39,48 @@ function Eyebrow({ children, onDark = false, center = false }: { children: React
 /* ------------------------------------------------------------ About */
 export function About() {
   return (
-    <section id="about" className="bg-sand-warm py-10 md:py-20">
-      <div className="container-wide grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
+    <section id="about" className="relative bg-sand-warm py-10 md:py-20">
+      <WingAccent className="absolute right-8 top-8 hidden text-brand-navy lg:block" size={160} />
+      <DotPattern className="absolute left-0 top-1/4 h-32 w-48 text-brand-navy opacity-30" count={18} />
+      <div className="container-wide relative grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
         <div className="flex flex-col lg:col-span-7">
-          <Eyebrow>Who we are</Eyebrow>
-          <h2 className="text-3xl font-bold leading-tight text-brand-deep sm:text-4xl md:text-[2.75rem]">
-            Compassion in action, rooted in Tegeta.
-          </h2>
-          <div className="mt-4 max-w-2xl space-y-3 text-[1.0625rem] leading-7 text-brand-deep/80">
-            <p>
-              Eagle&apos;s Wings Foundation Tanzania was founded in <strong className="text-brand-deep">2025</strong> in Tegeta, Dar es Salaam, to
-              improve the lives of people with disabilities and challenges, particularly children and older people.
-            </p>
-            <p>
-              We focus on practical learning and community support for them and for the families and caregivers around them, so that understanding
-              turns into everyday participation and belonging.
-            </p>
-          </div>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a href="/about" className="btn-pill-navy">
-              About us <ArrowRight className="size-4" aria-hidden />
-            </a>
-            <a href="#programs" className="btn-pill-outline">
-              Explore our programs
-            </a>
-          </div>
-          <dl className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-5">
+          <FadeUp>
+            <Eyebrow>Who we are</Eyebrow>
+            <h2 className="text-3xl font-bold leading-tight text-brand-deep sm:text-4xl md:text-[2.75rem]">
+              Compassion in action, rooted in Tegeta.
+            </h2>
+          </FadeUp>
+          <FadeUp delay={0.1}>
+            <div className="mt-4 max-w-2xl space-y-3 text-[1.0625rem] leading-7 text-brand-deep/80">
+              <p>
+                Eagle&apos;s Wings Foundation Tanzania was founded in <strong className="text-brand-deep">2025</strong> in Tegeta, Dar es Salaam, to
+                improve the lives of people with disabilities and challenges, particularly children and older people.
+              </p>
+              <p>
+                We focus on practical learning and community support for them and for the families and caregivers around them, so that understanding
+                turns into everyday participation and belonging.
+              </p>
+            </div>
+          </FadeUp>
+          <FadeUp delay={0.2}>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href="/about" className="btn-pill-navy">
+                About us <ArrowRight className="size-4" aria-hidden />
+              </a>
+              <a href="#programs" className="btn-pill-outline">
+                Explore our programs
+              </a>
+            </div>
+          </FadeUp>
+          <StaggerChildren as="div" className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-5" stagger={0.1}>
             {stats.map((s) => (
-              <div key={s.label} className="rounded-2xl border border-white bg-white/85 p-4 shadow-sm">
-                <dd className="tabular text-3xl font-bold text-brand-navy">{s.value}</dd>
-                <dt className="mt-1 text-[0.8125rem] leading-snug text-muted-foreground">{s.label}</dt>
-              </div>
+              <StaggerItem key={s.label} as="div">
+                <div className="rounded-2xl border border-white bg-white/85 p-4 shadow-sm">
+                  <CountUp value={s.value} label={s.label} />
+                </div>
+              </StaggerItem>
             ))}
-          </dl>
+          </StaggerChildren>
           {/* Mission and vision fill the rest of this column so the two
               columns end flush instead of leaving empty space below the stats. */}
           <div className="mt-6 grid flex-1 grid-cols-1 content-stretch gap-4 sm:grid-cols-2">
@@ -83,16 +94,18 @@ export function About() {
         </div>
 
         <div className="flex flex-col gap-4 lg:col-span-5">
-          <div className="overflow-hidden rounded-2xl">
-            <img
-              src="/photos/team/founder-banner-800w.webp"
-              srcSet="/photos/team/founder-banner-800w.webp 800w, /photos/team/founder-banner.webp 1600w"
-              sizes="(min-width: 1024px) 42vw, 100vw"
-              alt="Eagle's Wings Foundation founder standing in front of the Foundation banner"
-              className="aspect-[4/5] w-full object-cover object-[center_25%]"
-              loading="lazy"
-            />
-          </div>
+          <ScaleIn>
+            <div className="overflow-hidden rounded-2xl">
+              <img
+                src="/photos/team/founder-banner-800w.webp"
+                srcSet="/photos/team/founder-banner-800w.webp 800w, /photos/team/founder-banner.webp 1600w"
+                sizes="(min-width: 1024px) 42vw, 100vw"
+                alt="Eagle's Wings Foundation founder standing in front of the Foundation banner"
+                className="aspect-[4/5] w-full object-cover object-[center_25%]"
+                loading="lazy"
+              />
+            </div>
+          </ScaleIn>
           <PurposeCard icon={<Heart className="size-5" />} tag="Our promise" emphasis className="flex flex-1 flex-col justify-center">
             Grow carefully. Serve respectfully. Report truthfully.
           </PurposeCard>
@@ -146,15 +159,18 @@ export function Programs() {
   };
 
   return (
-    <section id="programs" className="scroll-mt-24 bg-white py-10 md:py-20">
-      <div className="container-wide">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            <Eyebrow>Our programs</Eyebrow>
-            <h2 className="text-3xl font-bold leading-tight text-brand-deep sm:text-4xl">Five connected areas of work.</h2>
-            <p className="mt-4 text-[1.0625rem] leading-8 text-muted-foreground">
-              Awareness, education, practical support and guidance for children, older people, families and caregivers in Tegeta and beyond.
-            </p>
+    <section id="programs" className="relative scroll-mt-24 bg-white py-10 md:py-20">
+      <FlowLine className="absolute left-0 right-0 top-0 h-20 w-full opacity-50" />
+      <div className="container-wide relative">
+        <FadeUp>
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <Eyebrow>Our programs</Eyebrow>
+              <h2 className="text-3xl font-bold leading-tight text-brand-deep sm:text-4xl">Five connected areas of work.</h2>
+              <p className="mt-4 text-[1.0625rem] leading-8 text-muted-foreground">
+                Awareness, education, practical support and guidance for children, older people, families and caregivers in Tegeta and beyond.
+              </p>
+            </div>
           </div>
           <div className="hidden items-center gap-2 md:flex">
             <button type="button" aria-label="Scroll programs left" onClick={() => scrollBy(-1)} className="round-btn">
@@ -164,9 +180,9 @@ export function Programs() {
               <ChevronRight className="size-5" />
             </button>
           </div>
-        </div>
+        </FadeUp>
 
-        <ul ref={scroller} className="scroll-slim mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-6" aria-label="Programs">
+        <FadeIn><ul ref={scroller} className="scroll-slim mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-6" aria-label="Programs">
           {programs.map((p, i) => {
             const Icon = p.icon;
             return (
@@ -193,16 +209,18 @@ export function Programs() {
               </li>
             );
           })}
-        </ul>
+        </ul></FadeIn>
 
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
-          <p className="text-[0.9375rem] text-muted-foreground">
-            <strong className="text-brand-deep">Not sure where to start?</strong> Tell us your situation and we will point you to the right support.
-          </p>
-          <a href="/get-started" className="btn-pill-navy">
-            Find support <ArrowRight className="size-4" aria-hidden />
-          </a>
-        </div>
+        <FadeUp delay={0.15}>
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
+            <p className="text-[0.9375rem] text-muted-foreground">
+              <strong className="text-brand-deep">Not sure where to start?</strong> Tell us your situation and we will point you to the right support.
+            </p>
+            <a href="/get-started" className="btn-pill-navy">
+              Find support <ArrowRight className="size-4" aria-hidden />
+            </a>
+          </div>
+        </FadeUp>
       </div>
     </section>
   );
@@ -220,39 +238,44 @@ export function Values() {
             "radial-gradient(circle at 15% 20%, rgba(246, 147, 30, 0.22), transparent 45%), radial-gradient(circle at 85% 75%, rgba(255, 255, 255, 0.10), transparent 50%)",
         }}
       />
+      <WingAccent className="absolute left-6 bottom-6 hidden text-white lg:block" size={140} />
+      <WingAccent className="absolute right-12 top-12 hidden text-orange lg:block" size={100} />
       <div className="container-wide relative">
-        <div className="max-w-3xl">
-          <Eyebrow onDark>What guides us</Eyebrow>
-          <h2 className="text-3xl font-bold leading-tight sm:text-4xl">Six values behind every decision.</h2>
-          <p className="mt-4 text-[1.0625rem] leading-8 text-white/80">
-            They shape how we work with children, older people, families and caregivers, and how we hold ourselves to account.
-          </p>
-        </div>
-        <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <FadeUp>
+          <div className="max-w-3xl">
+            <Eyebrow onDark>What guides us</Eyebrow>
+            <h2 className="text-3xl font-bold leading-tight sm:text-4xl">Six values behind every decision.</h2>
+            <p className="mt-4 text-[1.0625rem] leading-8 text-white/80">
+              They shape how we work with children, older people, families and caregivers, and how we hold ourselves to account.
+            </p>
+          </div>
+        </FadeUp>
+        <StaggerChildren className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" stagger={0.08}>
           {values.map((v, i) => {
             const Icon = v.icon;
             const last = i === values.length - 1;
             return (
-              <li
-                key={v.title}
-                className={
-                  last
-                    ? "group flex flex-col rounded-2xl bg-gradient-to-br from-orange to-[#e3800b] p-6 text-brand-deep shadow-lg"
-                    : "group flex flex-col rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm transition-colors hover:bg-white/10"
-                }
-              >
-                <span className={`inline-flex size-11 items-center justify-center rounded-xl ${last ? "bg-brand-deep/10" : "bg-white/15"}`}>
-                  <Icon className="size-5" aria-hidden />
-                </span>
-                <h3 className="mt-4 text-lg font-bold">{v.title}</h3>
-                <p className={`mt-2 flex-1 text-[0.9375rem] leading-7 ${last ? "text-brand-deep/85" : "text-white/80"}`}>{v.text}</p>
-                <span aria-hidden className={`tabular mt-4 text-5xl font-bold leading-none ${last ? "text-brand-deep/15" : "text-white/10 group-hover:text-white/20"}`}>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </li>
+              <StaggerItem key={v.title}>
+                <div
+                  className={
+                    last
+                      ? "group flex h-full flex-col rounded-2xl bg-gradient-to-br from-orange to-[#e3800b] p-6 text-brand-deep shadow-lg"
+                      : "group flex h-full flex-col rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm transition-colors hover:bg-white/10"
+                  }
+                >
+                  <span className={`inline-flex size-11 items-center justify-center rounded-xl ${last ? "bg-brand-deep/10" : "bg-white/15"}`}>
+                    <Icon className="size-5" aria-hidden />
+                  </span>
+                  <h3 className="mt-4 text-lg font-bold">{v.title}</h3>
+                  <p className={`mt-2 flex-1 text-[0.9375rem] leading-7 ${last ? "text-brand-deep/85" : "text-white/80"}`}>{v.text}</p>
+                  <span aria-hidden className={`tabular mt-4 text-5xl font-bold leading-none ${last ? "text-brand-deep/15" : "text-white/10 group-hover:text-white/20"}`}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+              </StaggerItem>
             );
           })}
-        </ul>
+        </StaggerChildren>
       </div>
     </section>
   );
@@ -261,24 +284,27 @@ export function Values() {
 /* ------------------------------------------------------------ News */
 export function News() {
   return (
-    <section id="news" className="bg-sand-warm py-10 md:py-20">
-      <div className="container-wide">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            <Eyebrow>News &amp; stories</Eyebrow>
-            <h2 className="text-3xl font-bold leading-tight text-brand-deep sm:text-4xl">Practical guidance for everyday life.</h2>
-            <p className="mt-4 text-[1.0625rem] leading-8 text-muted-foreground">
-              Plain-language articles on neuro-diversity, caregiving, healthy ageing and everyday life skills.
-            </p>
+    <section id="news" className="relative bg-sand-warm py-10 md:py-20">
+      <DotPattern className="absolute right-0 top-8 h-28 w-40 text-brand-navy opacity-20" count={16} />
+      <div className="container-wide relative">
+        <FadeUp>
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <Eyebrow>News &amp; stories</Eyebrow>
+              <h2 className="text-3xl font-bold leading-tight text-brand-deep sm:text-4xl">Practical guidance for everyday life.</h2>
+              <p className="mt-4 text-[1.0625rem] leading-8 text-muted-foreground">
+                Plain-language articles on neuro-diversity, caregiving, healthy ageing and everyday life skills.
+              </p>
+            </div>
+            <a href="/blog" className="btn-pill-outline self-start md:self-auto">
+              All {articleCount} articles <ArrowRight className="size-4" aria-hidden />
+            </a>
           </div>
-          <a href="/blog" className="btn-pill-outline self-start md:self-auto">
-            All {articleCount} articles <ArrowRight className="size-4" aria-hidden />
-          </a>
-        </div>
+        </FadeUp>
 
-        <ul className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <StaggerChildren className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" stagger={0.12}>
           {articles.map((a) => (
-            <li key={a.title}>
+            <StaggerItem key={a.title}>
               <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl motion-reduce:hover:translate-y-0">
                 <div className="relative aspect-[16/10] overflow-hidden bg-sand">
                   <img
@@ -306,9 +332,9 @@ export function News() {
                   </span>
                 </div>
               </article>
-            </li>
+            </StaggerItem>
           ))}
-        </ul>
+        </StaggerChildren>
       </div>
     </section>
   );
@@ -324,22 +350,25 @@ const ways = [
 
 export function GetInvolved() {
   return (
-    <section id="get-involved" className="bg-white py-10 md:py-20">
-      <div className="container-wide">
-        <div className="mx-auto max-w-3xl text-center">
-          <Eyebrow center>Get involved</Eyebrow>
-          <h2 className="text-3xl font-bold leading-tight text-brand-deep sm:text-4xl">Practical ways to help in Tegeta.</h2>
-          <p className="mt-4 text-[1.0625rem] leading-8 text-muted-foreground">
-            Whether you give an hour, a skill or a donation, there is a role that fits.
-          </p>
-        </div>
+    <section id="get-involved" className="relative bg-white py-10 md:py-20">
+      <WingAccent className="absolute left-1/2 top-6 hidden -translate-x-1/2 text-brand-navy lg:block" size={100} />
+      <div className="container-wide relative">
+        <FadeUp>
+          <div className="mx-auto max-w-3xl text-center">
+            <Eyebrow center>Get involved</Eyebrow>
+            <h2 className="text-3xl font-bold leading-tight text-brand-deep sm:text-4xl">Practical ways to help in Tegeta.</h2>
+            <p className="mt-4 text-[1.0625rem] leading-8 text-muted-foreground">
+              Whether you give an hour, a skill or a donation, there is a role that fits.
+            </p>
+          </div>
+        </FadeUp>
 
-        <ul className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <StaggerChildren className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4" stagger={0.1}>
           {ways.map((w) => {
             const Icon = w.icon;
             const lit = "highlight" in w && w.highlight;
             return (
-              <li key={w.title}>
+              <StaggerItem key={w.title}>
                 <a
                   href={w.href}
                   className={cn(
@@ -364,11 +393,12 @@ export function GetInvolved() {
                     {w.cta} <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
                   </span>
                 </a>
-              </li>
+              </StaggerItem>
             );
           })}
-        </ul>
+        </StaggerChildren>
 
+        <ScaleIn delay={0.2}>
         <div className="mt-8 overflow-hidden rounded-3xl shadow-xl">
           <div className="grid grid-cols-1 md:grid-cols-5">
             <div className="relative hidden md:col-span-2 md:block">
@@ -393,6 +423,7 @@ export function GetInvolved() {
             </div>
           </div>
         </div>
+        </ScaleIn>
       </div>
     </section>
   );
@@ -418,20 +449,23 @@ export function StayConnected() {
         style={{ backgroundImage: "radial-gradient(circle at 90% 10%, rgba(246, 147, 30, 0.45), transparent 45%)" }}
       />
       <div className="container-wide relative grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
-        <div>
-          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-orange">
-            <Mail className="size-3.5" aria-hidden /> Stay in touch
-          </p>
-          <h2 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl">Stay connected with Eagle&apos;s Wings.</h2>
-          <p className="mt-3 max-w-lg text-[1.0625rem] leading-8 text-white/85">
-            See our activities, ask a question or tell us how you would like to help. We read every message.
-          </p>
-          <div className="mt-6 hidden gap-3 lg:flex">
-            <img src="/photos/team/team-together-320w.webp" alt="The Eagle's Wings team with arms around each other in front of the Foundation banner" className="h-28 w-40 rounded-xl object-cover" loading="lazy" />
-            <img src="/photos/activities/play-basketball.webp" alt="A child playing basketball at the centre" className="h-28 w-40 rounded-xl object-cover" loading="lazy" />
-            <img src="/photos/life-skills/life-gardening.webp" alt="Young people gardening together" className="h-28 w-40 rounded-xl object-cover" loading="lazy" />
+        <FadeUp>
+          <div>
+            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-orange">
+              <Mail className="size-3.5" aria-hidden /> Stay in touch
+            </p>
+            <h2 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl">Stay connected with Eagle&apos;s Wings.</h2>
+            <p className="mt-3 max-w-lg text-[1.0625rem] leading-8 text-white/85">
+              See our activities, ask a question or tell us how you would like to help. We read every message.
+            </p>
+            <div className="mt-6 hidden gap-3 lg:flex">
+              <img src="/photos/team/team-together-320w.webp" alt="The Eagle's Wings team with arms around each other in front of the Foundation banner" className="h-28 w-40 rounded-xl object-cover" loading="lazy" />
+              <img src="/photos/activities/play-basketball.webp" alt="A child playing basketball at the centre" className="h-28 w-40 rounded-xl object-cover" loading="lazy" />
+              <img src="/photos/life-skills/life-gardening.webp" alt="Young people gardening together" className="h-28 w-40 rounded-xl object-cover" loading="lazy" />
+            </div>
           </div>
-        </div>
+        </FadeUp>
+        <FadeUp delay={0.15}>
         <ul className="space-y-3 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md sm:p-6">
           {channels.map((c) => {
             const Icon = c.icon;
@@ -455,6 +489,7 @@ export function StayConnected() {
             );
           })}
         </ul>
+        </FadeUp>
       </div>
     </section>
   );

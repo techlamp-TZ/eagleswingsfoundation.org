@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { Header } from '@/components/ew/header'
 import { Footer } from '@/components/ew/footer'
 import { routeMeta } from '../../data/nav.js'
+import { useScrollReveal } from '../../scroll-reveal.js'
 
 function activeRouteId(pathname) {
   return pathname.replace(/^\//, '').split('/')[0] || 'home'
@@ -31,6 +32,8 @@ export default function Layout() {
     if (target) target.scrollIntoView({ behavior: 'instant', block: 'start' })
     else window.scrollTo({ top: 0, behavior: 'instant' })
   }, [pathname, hash])
+
+  useScrollReveal(pathname)
 
   return (
     <div className="flex min-h-screen flex-col bg-background">

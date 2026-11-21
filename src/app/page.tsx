@@ -2,6 +2,7 @@ import { Header } from "@/components/ew/header";
 import { HeroSlider } from "@/components/ew/hero-slider";
 import { About, Programs, Values, News, GetInvolved, StayConnected } from "@/components/ew/sections";
 import { Footer } from "@/components/ew/footer";
+import { WaveDivider } from "@/components/ew/svg-accents";
 
 export default function Home() {
   return (
@@ -15,11 +16,17 @@ export default function Home() {
       <Header />
       <main id="main" className="flex-1">
         <HeroSlider />
+        <div className="bg-brand-deep"><WaveDivider color="var(--color-sand-warm)" /></div>
         <About />
+        <div className="bg-sand-warm"><WaveDivider color="white" /></div>
         <Programs />
+        <div className="bg-white"><WaveDivider color="var(--color-brand-deep)" /></div>
         <Values />
+        <div className="bg-brand-deep"><WaveDivider color="var(--color-sand-warm)" /></div>
         <News />
+        <div className="bg-sand-warm"><WaveDivider color="white" /></div>
         <GetInvolved />
+        <div className="bg-white"><WaveDivider color="var(--color-brand-navy)" /></div>
         <StayConnected />
       </main>
       <Footer />

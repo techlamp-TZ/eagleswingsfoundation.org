@@ -244,9 +244,19 @@ p, li { text-wrap: pretty; }
 @keyframes routeIn{from{transform:translateY(6px)}to{transform:none}}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 
+/* Scroll-reveal for legacy pages */
+.ew-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.5s cubic-bezier(0.25,0.4,0.25,1), transform 0.5s cubic-bezier(0.25,0.4,0.25,1); }
+.ew-reveal.ew-visible { opacity: 1; transform: none; }
+.ew-reveal:nth-child(2) { transition-delay: 0.06s; }
+.ew-reveal:nth-child(3) { transition-delay: 0.12s; }
+.ew-reveal:nth-child(4) { transition-delay: 0.18s; }
+.ew-reveal:nth-child(5) { transition-delay: 0.24s; }
+.ew-reveal:nth-child(6) { transition-delay: 0.30s; }
+
 /* Print: articles and pages print as clean documents */
 @media print {
   header, footer, #menuBtn, .no-print { display: none !important; }
   body { background: #fff; }
   .route-enter { animation: none; }
+  .ew-reveal { opacity: 1; transform: none; }
 }

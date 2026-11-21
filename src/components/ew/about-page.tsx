@@ -2,6 +2,8 @@
 
 import { ArrowRight, BookOpen, Eye, Heart, Laptop, Settings, Users } from "lucide-react";
 import { stats } from "./data";
+import { FadeUp, FadeIn, ScaleIn, StaggerChildren, StaggerItem, CountUp } from "./motion";
+import { WaveDivider, WingAccent, DotPattern } from "./svg-accents";
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -32,135 +34,147 @@ export function AboutPage() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
           {/* ===== LEFT COLUMN ===== */}
           <div className="flex flex-col lg:col-span-7">
-            <Eyebrow>Who we are</Eyebrow>
-            <h1 className="text-[2.5rem] font-bold leading-[1.1] text-brand-deep sm:text-5xl md:text-[3.25rem]">
-              Compassion in action,
-              <br />
-              <span className="relative inline-block">
-                rooted in Tegeta.
-                <svg
-                  className="absolute -bottom-1.5 left-0 w-full"
-                  viewBox="0 0 240 12"
-                  fill="none"
-                  preserveAspectRatio="none"
-                  aria-hidden
-                >
-                  <path
-                    d="M4 8c50-6 100-6 150-2s60 4 84-1"
-                    stroke="var(--color-orange, #f6931e)"
-                    strokeWidth="3"
-                    strokeLinecap="round"
+            <FadeUp>
+              <Eyebrow>Who we are</Eyebrow>
+              <h1 className="text-[2.5rem] font-bold leading-[1.1] text-brand-deep sm:text-5xl md:text-[3.25rem]">
+                Compassion in action,
+                <br />
+                <span className="relative inline-block">
+                  rooted in Tegeta.
+                  <svg
+                    className="absolute -bottom-1.5 left-0 w-full"
+                    viewBox="0 0 240 12"
                     fill="none"
-                  />
-                </svg>
-              </span>
-            </h1>
-            <div className="mt-4 max-w-xl space-y-3 text-[1.0625rem] leading-7 text-brand-deep/75">
-              <p>
-                Eagle&apos;s Wings Foundation Tanzania was founded in 2025 in Tegeta, Dar es Salaam,
-                to improve the lives of people with disabilities and challenges, particularly children
-                and older people.
-              </p>
-              <p>
-                We focus on practical learning and community support for them and for the families
-                and caregivers around them, so that understanding turns into everyday participation
-                and belonging.
-              </p>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a href="/donate" className="btn-pill-orange">
-                Support Us <ArrowRight className="size-4" aria-hidden />
-              </a>
-              <a href="/programs" className="btn-pill-outline">
-                Explore Our Programs <ArrowRight className="size-4" aria-hidden />
-              </a>
-            </div>
+                    preserveAspectRatio="none"
+                    aria-hidden
+                  >
+                    <path
+                      d="M4 8c50-6 100-6 150-2s60 4 84-1"
+                      stroke="var(--color-orange, #f6931e)"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      fill="none"
+                    />
+                  </svg>
+                </span>
+              </h1>
+            </FadeUp>
+            <FadeUp delay={0.1}>
+              <div className="mt-4 max-w-xl space-y-3 text-[1.0625rem] leading-7 text-brand-deep/75">
+                <p>
+                  Eagle&apos;s Wings Foundation Tanzania was founded in 2025 in Tegeta, Dar es Salaam,
+                  to improve the lives of people with disabilities and challenges, particularly children
+                  and older people.
+                </p>
+                <p>
+                  We focus on practical learning and community support for them and for the families
+                  and caregivers around them, so that understanding turns into everyday participation
+                  and belonging.
+                </p>
+              </div>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a href="/donate" className="btn-pill-orange">
+                  Support Us <ArrowRight className="size-4" aria-hidden />
+                </a>
+                <a href="/programs" className="btn-pill-outline">
+                  Explore Our Programs <ArrowRight className="size-4" aria-hidden />
+                </a>
+              </div>
+            </FadeUp>
 
             {/* Mission and vision fill this column so it ends flush with the photo column */}
-            <div className="mt-8 space-y-4">
-              <div className="rounded-2xl border border-line bg-white p-5 shadow-sm">
-                <div className="flex items-start gap-4">
-                  <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-brand-navy/10 text-brand-navy">
-                    <Settings className="size-5" aria-hidden />
-                  </span>
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-orange-ink">
-                      Our Mission
-                    </p>
-                    <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-brand-deep/75">
-                      To empower, encourage and educate less privileged, special needs and elderly
-                      individuals by helping, caring for and supporting their needs.
-                    </p>
+            <StaggerChildren as="div" className="mt-8 space-y-4">
+              <StaggerItem as="div">
+                <div className="rounded-2xl border border-line bg-white p-5 shadow-sm">
+                  <div className="flex items-start gap-4">
+                    <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-brand-navy/10 text-brand-navy">
+                      <Settings className="size-5" aria-hidden />
+                    </span>
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-[0.16em] text-orange-ink">
+                        Our Mission
+                      </p>
+                      <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-brand-deep/75">
+                        To empower, encourage and educate less privileged, special needs and elderly
+                        individuals by helping, caring for and supporting their needs.
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </StaggerItem>
 
-              <div className="rounded-2xl border border-line bg-white p-5 shadow-sm">
-                <div className="flex items-start gap-4">
-                  <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-brand-navy/10 text-brand-navy">
-                    <Eye className="size-5" aria-hidden />
-                  </span>
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-orange-ink">
-                      Our Vision
-                    </p>
-                    <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-brand-deep/75">
-                      To build a more inclusive and supportive community where every person, regardless
-                      of ability or age, has the opportunity to thrive.
-                    </p>
+              <StaggerItem as="div">
+                <div className="rounded-2xl border border-line bg-white p-5 shadow-sm">
+                  <div className="flex items-start gap-4">
+                    <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-brand-navy/10 text-brand-navy">
+                      <Eye className="size-5" aria-hidden />
+                    </span>
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-[0.16em] text-orange-ink">
+                        Our Vision
+                      </p>
+                      <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-brand-deep/75">
+                        To build a more inclusive and supportive community where every person, regardless
+                        of ability or age, has the opportunity to thrive.
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </StaggerItem>
+            </StaggerChildren>
           </div>
 
           {/* ===== RIGHT COLUMN ===== */}
-          <div className="flex flex-col lg:col-span-5">
-            <div className="overflow-hidden rounded-2xl shadow-lg">
-              <img
-                src="/photos/team/founder-banner.webp"
-                alt="Eagle's Wings Foundation founder standing in front of the Foundation banner"
-                className="aspect-[3/2] w-full object-cover object-[center_25%]"
-              />
-            </div>
+          <div className="relative flex flex-col lg:col-span-5">
+            <WingAccent className="absolute -right-4 -top-4 text-brand-navy" size={100} />
+            <ScaleIn>
+              <div className="overflow-hidden rounded-2xl shadow-lg">
+                <img
+                  src="/photos/team/founder-banner.webp"
+                  alt="Eagle's Wings Foundation founder standing in front of the Foundation banner"
+                  className="aspect-[3/2] w-full object-cover object-[center_25%]"
+                />
+              </div>
+            </ScaleIn>
 
             {/* Stats pin to the bottom of the column so it ends flush with the left column */}
             <div className="mt-auto pt-8">
-              <Eyebrow>Our Impact</Eyebrow>
-              <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-6">
+              <FadeUp>
+                <Eyebrow>Our Impact</Eyebrow>
+              </FadeUp>
+              <StaggerChildren as="div" className="mt-4 grid grid-cols-2 gap-x-6 gap-y-6">
                 {stats.map((s, i) => {
                   const Icon = impactIcons[i];
                   return (
-                    <div key={s.label} className="flex flex-col items-start">
-                      <span className="inline-flex size-11 items-center justify-center rounded-full bg-brand-navy/10 text-brand-navy">
-                        <Icon className="size-5" aria-hidden />
-                      </span>
-                      <dd className="mt-3 text-3xl font-bold tabular-nums text-brand-deep md:text-4xl">
-                        {s.value}
-                      </dd>
-                      <dt className="mt-1 text-[0.8125rem] leading-snug text-muted-foreground">
-                        {s.label}
-                      </dt>
-                    </div>
+                    <StaggerItem key={s.label} as="div">
+                      <div className="flex flex-col items-start">
+                        <span className="inline-flex size-11 items-center justify-center rounded-full bg-brand-navy/10 text-brand-navy">
+                          <Icon className="size-5" aria-hidden />
+                        </span>
+                        <CountUp value={s.value} label={s.label} />
+                      </div>
+                    </StaggerItem>
                   );
                 })}
-              </div>
+              </StaggerChildren>
             </div>
           </div>
         </div>
 
         {/* ---- Meet the Team ---- */}
         <div className="mt-14">
-          <Eyebrow>Our Team</Eyebrow>
-          <h2 className="text-2xl font-bold text-brand-deep sm:text-3xl">
-            Meet the people behind Eagle&apos;s Wings
-          </h2>
-          <p className="mt-2 max-w-2xl text-[0.9375rem] leading-7 text-brand-deep/70">
-            Our dedicated team works together to create a more inclusive community
-            in Tegeta and beyond.
-          </p>
+          <FadeUp>
+            <Eyebrow>Our Team</Eyebrow>
+            <h2 className="text-2xl font-bold text-brand-deep sm:text-3xl">
+              Meet the people behind Eagle&apos;s Wings
+            </h2>
+            <p className="mt-2 max-w-2xl text-[0.9375rem] leading-7 text-brand-deep/70">
+              Our dedicated team works together to create a more inclusive community
+              in Tegeta and beyond.
+            </p>
+          </FadeUp>
 
-          <div className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
+          <StaggerChildren as="div" className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
             {[
               { name: 'Stella Rweyemamu', role: 'Director', photo: '/photos/team/Stella.png' },
               { name: 'Stephen Krasinski', role: 'Honorary Member', photo: '/photos/team/Mzungu.png' },
@@ -169,24 +183,27 @@ export function AboutPage() {
               { name: 'Doreen Temistocles', role: 'Member', photo: '/photos/team/Doreen.png' },
               { name: 'Winfrida Rweyemamu', role: 'Member', photo: '/photos/team/Winfrida.png' },
             ].map((m) => (
-              <div key={m.name} className="group text-center">
-                <div className="overflow-hidden rounded-2xl bg-sand-warm">
-                  <img
-                    src={m.photo}
-                    alt={m.name}
-                    className="aspect-[3/4] w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                  />
+              <StaggerItem key={m.name} as="div">
+                <div className="group text-center">
+                  <div className="overflow-hidden rounded-2xl bg-sand-warm">
+                    <img
+                      src={m.photo}
+                      alt={m.name}
+                      className="aspect-[3/4] w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p className="mt-3 text-[0.9375rem] font-bold text-brand-deep">{m.name}</p>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-orange-ink">{m.role}</p>
                 </div>
-                <p className="mt-3 text-[0.9375rem] font-bold text-brand-deep">{m.name}</p>
-                <p className="text-xs font-semibold uppercase tracking-wide text-orange-ink">{m.role}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerChildren>
         </div>
 
         {/* ---- Get Involved CTA ---- */}
-        <div className="mt-10 overflow-hidden rounded-3xl bg-gradient-to-r from-brand-deep to-brand-navy shadow-xl">
+        <ScaleIn className="mt-10">
+        <div className="overflow-hidden rounded-3xl bg-gradient-to-r from-brand-deep to-brand-navy shadow-xl">
           <div className="grid grid-cols-1 items-center md:grid-cols-12">
             {/* Photo */}
             <div className="relative min-h-[260px] md:col-span-4">
@@ -226,6 +243,7 @@ export function AboutPage() {
             </div>
           </div>
         </div>
+        </ScaleIn>
       </div>
     </div>
   );
